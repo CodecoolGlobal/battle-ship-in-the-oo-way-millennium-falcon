@@ -26,8 +26,8 @@ namespace BattleshipOOP
 
         };
 
-        private List<Ship> PlayerShips = new List<Ship>();
-        private List<Ship> AIShips = new List<Ship>();
+        private List<Ship> Ships = new List<Ship>();
+
 
         public ShipsList(bool isRebellion)
         {
@@ -38,11 +38,11 @@ namespace BattleshipOOP
         {
             if (IsRebellion) 
             {
-                PlayerShips.Add(new Ship(shipType, RebelShips[shipType], horizontal, coordinates));
+                Ships.Add(new Ship(shipType, RebelShips[shipType], horizontal, coordinates));
             }
             else
             {
-                PlayerShips.Add(new Ship(shipType, ImperialShips[shipType], horizontal, coordinates));
+                Ships.Add(new Ship(shipType, ImperialShips[shipType], horizontal, coordinates));
             }
         }
 

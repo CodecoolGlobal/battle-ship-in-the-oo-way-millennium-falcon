@@ -6,6 +6,7 @@ namespace BattleshipOOP
     {
         static void Main(string[] args)
         {
+            Game game = new Game();
             Space space = new Space();
             space.PrintBoard();
 
