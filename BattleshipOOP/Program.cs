@@ -6,7 +6,9 @@ namespace BattleshipOOP
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Space space = new Space();
+            space.PrintBoard();
+
         }
     }
 }
