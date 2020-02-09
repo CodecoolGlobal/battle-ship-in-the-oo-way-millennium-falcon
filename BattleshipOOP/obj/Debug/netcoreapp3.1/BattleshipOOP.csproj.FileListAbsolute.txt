@@ -1,0 +1,11 @@
+C:\Users\tomas\Dropbox\Codecool - C#\BattleshipOOP\BattleshipOOP\bin\Debug\netcoreapp3.1\BattleshipOOP.exe
+C:\Users\tomas\Dropbox\Codecool - C#\BattleshipOOP\BattleshipOOP\bin\Debug\netcoreapp3.1\BattleshipOOP.deps.json
+C:\Users\tomas\Dropbox\Codecool - C#\BattleshipOOP\BattleshipOOP\bin\Debug\netcoreapp3.1\BattleshipOOP.runtimeconfig.json
+C:\Users\tomas\Dropbox\Codecool - C#\BattleshipOOP\BattleshipOOP\bin\Debug\netcoreapp3.1\BattleshipOOP.runtimeconfig.dev.json
+C:\Users\tomas\Dropbox\Codecool - C#\BattleshipOOP\BattleshipOOP\bin\Debug\netcoreapp3.1\BattleshipOOP.dll
+C:\Users\tomas\Dropbox\Codecool - C#\BattleshipOOP\BattleshipOOP\bin\Debug\netcoreapp3.1\BattleshipOOP.pdb
+C:\Users\tomas\Dropbox\Codecool - C#\BattleshipOOP\BattleshipOOP\obj\Debug\netcoreapp3.1\BattleshipOOP.csprojAssemblyReference.cache
+C:\Users\tomas\Dropbox\Codecool - C#\BattleshipOOP\BattleshipOOP\obj\Debug\netcoreapp3.1\BattleshipOOP.AssemblyInfoInputs.cache
+C:\Users\tomas\Dropbox\Codecool - C#\BattleshipOOP\BattleshipOOP\obj\Debug\netcoreapp3.1\BattleshipOOP.AssemblyInfo.cs
+C:\Users\tomas\Dropbox\Codecool - C#\BattleshipOOP\BattleshipOOP\obj\Debug\netcoreapp3.1\BattleshipOOP.dll
+C:\Users\tomas\Dropbox\Codecool - C#\BattleshipOOP\BattleshipOOP\obj\Debug\netcoreapp3.1\BattleshipOOP.pdb
