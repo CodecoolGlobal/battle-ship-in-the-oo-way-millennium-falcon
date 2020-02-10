@@ -17,10 +17,6 @@ namespace BattleshipOOP
             Lenght = lenght;
             Horizontal = horizontal;
             Coordinates = coordinates;
-
         }
-
-
-
     }
 }

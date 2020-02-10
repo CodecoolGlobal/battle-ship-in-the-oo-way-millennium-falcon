@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace BattleshipOOP
 {
     static class UI
     {
+        static readonly string[] VALIDCOLUMNS = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
+        static readonly int[] VALIDROWS = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
         public static string AskName()
         {
             Console.WriteLine("What is your name?");
@@ -41,19 +43,61 @@ namespace BattleshipOOP
             return isRebellion;
         }
 
-        public static int[] GetCoordinatesForShip()
+        public static bool GetShipAlignment()
         {
             string answer;
-            int[] coordinates = new int[2];
+            bool isHorizontal = false;
+            bool correctAnswer = false;
+            while (!correctAnswer)
+            {
+                Console.WriteLine("Do you want to place your ship horizontally? (y/n)");
+                answer = Console.ReadLine().ToLower();
+                if (answer == "y")
+                {
+                    isHorizontal = true;
+                    correctAnswer = true;
+                }
+                else if (answer == "n")
+                {
+                    isHorizontal = false;
+                    correctAnswer = true;
+                }
+                else
+                {
+                    Console.WriteLine("Wrong answer! You have to pick yes-(y) or no-(n).");
+                }
+            }
+            return isHorizontal;
+        }
 
-            Console.WriteLine("Where do you want to place your ship?");
-            answer = Console.ReadLine();
-            //TODO 
-            //validation for this answer needed -> valid letter, valid number, is this place occupied for all ship squares
-            coordinates[0] = TranslateCoordinates(answer[0].ToString());
-            coordinates[1] = int.Parse(answer.Substring(1))-1;
-
+        public static int[] GetCoordinatesForShipHead()
+        {
+            string answer;
+            int[] coordinates = new int[2];   
+   
+            bool correctAnswer = false;
+            while (!correctAnswer)
+            {
+                Console.WriteLine("Where do you want to place your ship?");
+                answer = Console.ReadLine();
+                //TODO 
+                //validation for this answer needed -> is this place occupied for all ship squares
+                if (isAnswerValid(answer))
+                {
+                    coordinates[0] = TranslateCoordinates(answer[0].ToString());
+                    coordinates[1] = int.Parse(answer.Substring(1)) - 1;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter valid coordinates");
+                }
+            }
             return coordinates;
+        }
+
+        private static bool isAnswerValid(string answer)
+        {
+            return (VALIDCOLUMNS.Contains(answer[0].ToString()) && VALIDROWS.Contains(int.Parse(answer.Substring(1)))) ? true : false;
         }
 
         private static int TranslateCoordinates(string column)
