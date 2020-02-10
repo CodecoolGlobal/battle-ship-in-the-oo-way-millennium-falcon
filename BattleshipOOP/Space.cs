@@ -7,8 +7,7 @@ namespace BattleshipOOP
     class Space
     {
 
-        private List<List<Square>> board = new List<List<Square>>();
-
+        public List<List<Square>> board = new List<List<Square>>();
 
         public Space()
         {
@@ -19,14 +18,17 @@ namespace BattleshipOOP
                 {
                     board[width].Add(new Square());
                 }
-
             }
         }
 
+        //public void UpdateSpace(int[])
+ 
+
         public void PrintBoard()
         {
+            string separatorLine = "--------------------------------------------";
             Console.WriteLine("   | a | b | c | d | e | f | g | h | i | j |");
-            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine(separatorLine);
             int rowNumber = 1;
             string rowToPrint;
 
@@ -43,14 +45,13 @@ namespace BattleshipOOP
                 
                 foreach (Square square in element)
                 {
+                    square.updateVisualRepresentation();
                     rowToPrint += square.visualRepresentation;
                 }
                 Console.WriteLine(rowToPrint);
-                Console.WriteLine("--------------------------------------------");
+                Console.WriteLine(separatorLine);
                 rowNumber++;
-            }
-            
+            }  
         }
-
     }
 }

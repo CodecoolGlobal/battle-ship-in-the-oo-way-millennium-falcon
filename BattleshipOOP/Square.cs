@@ -7,7 +7,7 @@ namespace BattleshipOOP
     class Square
     {
         private bool IsHit { get; set; }
-        private bool IsShip { get; set; }
+        public bool IsShip { get; set; }
 
         public string visualRepresentation;
 

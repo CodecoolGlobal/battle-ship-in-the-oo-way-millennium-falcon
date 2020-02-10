@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tomasz.Giela\\Dropbox\\Codecool - C#\\BattleshipOOP-MilleniumFalcon\\BattleshipOOP\\BattleshipOOP.csproj": {}
+    "C:\\Users\\tomas\\Dropbox\\Codecool - C#\\BattleshipOOP-MilleniumFalcon\\BattleshipOOP\\BattleshipOOP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tomasz.Giela\\Dropbox\\Codecool - C#\\BattleshipOOP-MilleniumFalcon\\BattleshipOOP\\BattleshipOOP.csproj": {
+    "C:\\Users\\tomas\\Dropbox\\Codecool - C#\\BattleshipOOP-MilleniumFalcon\\BattleshipOOP\\BattleshipOOP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tomasz.Giela\\Dropbox\\Codecool - C#\\BattleshipOOP-MilleniumFalcon\\BattleshipOOP\\BattleshipOOP.csproj",
+        "projectUniqueName": "C:\\Users\\tomas\\Dropbox\\Codecool - C#\\BattleshipOOP-MilleniumFalcon\\BattleshipOOP\\BattleshipOOP.csproj",
         "projectName": "BattleshipOOP",
-        "projectPath": "C:\\Users\\Tomasz.Giela\\Dropbox\\Codecool - C#\\BattleshipOOP-MilleniumFalcon\\BattleshipOOP\\BattleshipOOP.csproj",
-        "packagesPath": "C:\\Users\\Tomasz.Giela\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tomasz.Giela\\Dropbox\\Codecool - C#\\BattleshipOOP-MilleniumFalcon\\BattleshipOOP\\obj\\",
+        "projectPath": "C:\\Users\\tomas\\Dropbox\\Codecool - C#\\BattleshipOOP-MilleniumFalcon\\BattleshipOOP\\BattleshipOOP.csproj",
+        "packagesPath": "C:\\Users\\tomas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tomas\\Dropbox\\Codecool - C#\\BattleshipOOP-MilleniumFalcon\\BattleshipOOP\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Tomasz.Giela\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tomas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

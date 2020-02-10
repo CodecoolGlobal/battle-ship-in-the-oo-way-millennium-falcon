@@ -7,16 +7,16 @@ namespace BattleshipOOP
     class Ship
     {
         private string Type { get; set; }
-        private int Lenght { get; set; }
-        private bool Horizontal { get; set; }
-        private List<int> Coordinates { get; set; }
+        public int Lenght { get; set; }
+        public bool Horizontal { get; set; }
+        //private List<int> Coordinates { get; set; }
 
-        public Ship(string type, int lenght, bool horizontal, List<int> coordinates)
+        public Ship(string type, int lenght, bool horizontal)
         {
             Type = type;
             Lenght = lenght;
             Horizontal = horizontal;
-            Coordinates = coordinates;
+            //Coordinates = coordinates;
         }
     }
 }

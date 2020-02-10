@@ -38,11 +38,11 @@ namespace BattleshipOOP
         {
             if (IsRebellion) 
             {
-                Ships.Add(new Ship(shipType, RebelShips[shipType], horizontal, coordinates));
+                Ships.Add(new Ship(shipType, RebelShips[shipType], horizontal));
             }
             else
             {
-                Ships.Add(new Ship(shipType, ImperialShips[shipType], horizontal, coordinates));
+                Ships.Add(new Ship(shipType, ImperialShips[shipType], horizontal));
             }
         }
 

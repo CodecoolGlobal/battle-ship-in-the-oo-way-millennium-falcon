@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BattleshipOOP
 {
@@ -66,29 +67,56 @@ namespace BattleshipOOP
             return isHorizontal;
         }
 
-        public static int[] GetCoordinatesForShipHead()
+        public static List<int[]> GetCoordinatesForShipHead(Ship ship, Space space)
         {
-            string answer;
-            int[] coordinates = new int[2];   
+            string userPlacement;
+            int[] coordinates = {-1, -1};   
    
             bool correctAnswer = false;
             while (!correctAnswer)
             {
                 Console.WriteLine("Where do you want to place your ship?");
-                answer = Console.ReadLine();
-                //TODO 
-                //validation for this answer needed -> is this place occupied for all ship squares
-                if (Validation.isAnswerValid(answer))
+                userPlacement = Console.ReadLine();
+
+                coordinates[0] = int.Parse(userPlacement.Substring(1)) - 1; 
+                coordinates[1] = Validation.TranslateCoordinates(userPlacement[0].ToString());
+
+                if (Validation.isAnswerValid(coordinates) && !Validation.IsThereAShip(space, ship, coordinates))
                 {
-                    coordinates[0] = Validation.TranslateCoordinates(answer[0].ToString());
-                    coordinates[1] = int.Parse(answer.Substring(1)) - 1;
+                    correctAnswer = true;
                 }
                 else
                 {
-                    Console.WriteLine("Please enter valid coordinates");
+                    Console.WriteLine("Please enter valid coordinates.");
                 }
             }
-            return coordinates;
+            return GetFullShipCoordinates(ship, coordinates);
+        }
+
+        private static List<int[]> GetFullShipCoordinates(Ship ship, int[] headCoordinates)
+        {
+            List<int[]> fullCoordinatesList = new List<int[]>();
+            if (ship.Horizontal)
+            {
+                for (int i = 0; i < ship.Lenght; i++)
+                {
+                    int[] shipSegment = new int[2];
+                    shipSegment[0] = headCoordinates[0];
+                    shipSegment[1] = headCoordinates[1] + i;
+                    fullCoordinatesList.Add(shipSegment);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < ship.Lenght; i++)
+                {
+                    int[] shipSegment = new int[2];
+                    shipSegment[0] = headCoordinates[0] + i;
+                    shipSegment[1] = headCoordinates[1];
+                    fullCoordinatesList.Add(shipSegment);
+                }
+            }
+            return fullCoordinatesList;
         }
     }
 }
