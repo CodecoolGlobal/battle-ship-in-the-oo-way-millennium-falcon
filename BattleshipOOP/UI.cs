@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Linq;
 
 namespace BattleshipOOP
 {
     static class UI
     {
-        static readonly string[] VALIDCOLUMNS = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
-        static readonly int[] VALIDROWS = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-
         public static string AskName()
         {
             Console.WriteLine("What is your name?");
@@ -82,9 +78,9 @@ namespace BattleshipOOP
                 answer = Console.ReadLine();
                 //TODO 
                 //validation for this answer needed -> is this place occupied for all ship squares
-                if (isAnswerValid(answer))
+                if (Validation.isAnswerValid(answer))
                 {
-                    coordinates[0] = TranslateCoordinates(answer[0].ToString());
+                    coordinates[0] = Validation.TranslateCoordinates(answer[0].ToString());
                     coordinates[1] = int.Parse(answer.Substring(1)) - 1;
                 }
                 else
@@ -93,40 +89,6 @@ namespace BattleshipOOP
                 }
             }
             return coordinates;
-        }
-
-        private static bool isAnswerValid(string answer)
-        {
-            return (VALIDCOLUMNS.Contains(answer[0].ToString()) && VALIDROWS.Contains(int.Parse(answer.Substring(1)))) ? true : false;
-        }
-
-        private static int TranslateCoordinates(string column)
-        {
-            switch (column.ToUpper())
-            {
-                case "A":
-                    return 0;
-                case "B":
-                    return 1;
-                case "C":
-                    return 2;
-                case "D":
-                    return 3;
-                case "E":
-                    return 4;
-                case "F":
-                    return 5;
-                case "G":
-                    return 6;
-                case "H":
-                    return 7;
-                case "I":
-                    return 8;
-                case "J":
-                    return 9;
-                default:
-                    throw new ArgumentException("Entered column number does not match any available field.");
-            }
         }
     }
 }
