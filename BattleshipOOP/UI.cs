@@ -69,14 +69,13 @@ namespace BattleshipOOP
 
         public static List<int[]> GetCoordinatesForShipHead(Ship ship, Space space)
         {
-            string userPlacement;
             int[] coordinates = {-1, -1};   
    
             bool correctAnswer = false;
             while (!correctAnswer)
             {
                 Console.WriteLine("Where do you want to place your ship?");
-                userPlacement = Console.ReadLine();
+                string userPlacement = Console.ReadLine();
 
                 coordinates[0] = int.Parse(userPlacement.Substring(1)) - 1; 
                 coordinates[1] = Validation.TranslateCoordinates(userPlacement[0].ToString());

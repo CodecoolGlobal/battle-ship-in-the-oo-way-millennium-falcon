@@ -8,6 +8,7 @@ namespace BattleshipOOP
     {
         private bool IsHit { get; set; }
         public bool IsShip { get; set; }
+        //private int[] Coordinates { get; set; }
 
         public string visualRepresentation;
 

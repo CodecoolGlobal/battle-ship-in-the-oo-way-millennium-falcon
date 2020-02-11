@@ -6,7 +6,9 @@ namespace BattleshipOOP
 {
     class ShipsList
     {
-        private bool IsRebellion { get; set; }
+        public Dictionary<string, int> ShipList { get; set; }
+        
+        //private List<Ship> Ships = new List<Ship>();
 
         private Dictionary<string, int> RebelShips = new Dictionary<string, int>
         {
@@ -14,7 +16,6 @@ namespace BattleshipOOP
             {"Millennium Falcon", 2 },
             {"Liberator", 3 },
             {"Nebulon-B2 Frigate", 4 }
-
         };
 
         private Dictionary<string, int> ImperialShips = new Dictionary<string, int>
@@ -23,17 +24,17 @@ namespace BattleshipOOP
             {"Destroyer", 2 },
             {"Dreadnaught", 3 },
             {"Deathstar", 4 }
-
         };
 
-        private List<Ship> Ships = new List<Ship>();
+        
 
 
         public ShipsList(bool isRebellion)
         {
-            IsRebellion = isRebellion;
+            ShipList = (isRebellion) ? RebelShips : ImperialShips;
         }
 
+        /*
         public void AddShip(string shipType, bool horizontal, List<int> coordinates)
         {
             if (IsRebellion) 
@@ -45,6 +46,6 @@ namespace BattleshipOOP
                 Ships.Add(new Ship(shipType, ImperialShips[shipType], horizontal));
             }
         }
-
+        */
     }
 }
