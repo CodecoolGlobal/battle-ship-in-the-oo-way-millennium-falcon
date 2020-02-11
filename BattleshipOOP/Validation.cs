@@ -44,32 +44,36 @@ namespace BattleshipOOP
         public static bool IsThereAShip(Space space, Ship ship, int[] coordinates)
         {
             bool isThereAShip = false;
-            if(ship.Horizontal)
+            for (int i = 0; i < ship.Lenght; i++)
             {
-                for (int i = 0; i < ship.Lenght; i++)
+                try
                 {
-                    try
+                    if (ship.Horizontal)
                     {
-                        isThereAShip = (space.board[coordinates[0]][coordinates[1]+i].IsShip) ? true : false;
+                        if (space.board[coordinates[0]][coordinates[1] + i].IsShip)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
-                    catch(ArgumentOutOfRangeException)
+                    else 
                     {
-                        isThereAShip = true;
+                        if (space.board[coordinates[0] + i][coordinates[1]].IsShip)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
                 }
-            }
-            else
-            {
-                for (int i = 0; i < ship.Lenght; i++)
+                catch(ArgumentOutOfRangeException)
                 {
-                    try
-                    {
-                        isThereAShip = (space.board[coordinates[0]+i][coordinates[1]].IsShip) ? true : false;
-                    }
-                    catch (ArgumentOutOfRangeException)
-                    {
-                        isThereAShip = true;
-                    }
+                    isThereAShip = true;
                 }
             }
             return isThereAShip;
