@@ -44,10 +44,7 @@ namespace BattleshipOOP
                     Ship newShip = new Ship(ship.Key, UI.GetShipAlignment(ship.Key, i));
                     newShip.FullCoordinates = UI.GetFullCoordinatesFromShipHead(newShip, board, i);
                     Ships.Add(newShip);
-                    foreach (int[] setOfCoordinates in newShip.FullCoordinates)
-                    {
-                        board.board[setOfCoordinates[0]][setOfCoordinates[1]].IsShip = true;
-                    }
+                    Square.UpdateShipSquaresOnBoard(board, newShip);
                     Console.Clear();
                     board.PrintBoard();
                 }

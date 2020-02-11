@@ -8,15 +8,15 @@ namespace BattleshipOOP
     {
         public string Type { get; set; }
         public int Lenght { get; set; }
-        public bool Horizontal { get; set; }
+        public bool IsHorizontal { get; set; }
 
         public List<int[]> FullCoordinates;
 
-        public Ship(string type, bool horizontal)
+        public Ship(string type, bool ishorizontal)
         {
             Type = type;
             Lenght = GetShipLength(type);
-            Horizontal = horizontal;
+            IsHorizontal = ishorizontal;
         }
 
         private static int GetShipLength(string type)

@@ -126,7 +126,7 @@ namespace BattleshipOOP
             for (int i = 0; i < ship.Lenght; i++)
             {
                 int[] shipSegment = new int[2];
-                if(ship.Horizontal)
+                if(ship.IsHorizontal)
                 {
                     shipSegment[0] = headCoordinates[0];
                     shipSegment[1] = headCoordinates[1] + i;

@@ -8,6 +8,7 @@ namespace BattleshipOOP
     {
         private bool IsHit { get; set; }
         public bool IsShip { get; set; }
+        public bool IsTooClose { get; set; }
         //private int[] Coordinates { get; set; }
 
         public string visualRepresentation;
@@ -36,6 +37,14 @@ namespace BattleshipOOP
             else
             {
                 visualRepresentation = "   |";
+            }
+        }
+
+        public static void UpdateShipSquaresOnBoard(Space board, Ship newShip)
+        {
+            foreach (int[] setOfCoordinates in newShip.FullCoordinates)
+            {
+                board.board[setOfCoordinates[0]][setOfCoordinates[1]].IsShip = true;
             }
         }
     }

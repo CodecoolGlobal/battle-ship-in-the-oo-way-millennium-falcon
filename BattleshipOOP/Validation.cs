@@ -48,7 +48,7 @@ namespace BattleshipOOP
             {
                 try
                 {
-                    if (ship.Horizontal)
+                    if (ship.IsHorizontal)
                     {
                         if (space.board[coordinates[0]][coordinates[1] + i].IsShip)
                         {
