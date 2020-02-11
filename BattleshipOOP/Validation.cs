@@ -50,7 +50,7 @@ namespace BattleshipOOP
                 {
                     if (ship.IsHorizontal)
                     {
-                        if (space.board[coordinates[0]][coordinates[1] + i].IsShip)
+                        if (space.board[coordinates[0]][coordinates[1] + i].IsTooClose)
                         {
                             return true;
                         }
@@ -61,7 +61,7 @@ namespace BattleshipOOP
                     }
                     else 
                     {
-                        if (space.board[coordinates[0] + i][coordinates[1]].IsShip)
+                        if (space.board[coordinates[0] + i][coordinates[1]].IsTooClose)
                         {
                             return true;
                         }

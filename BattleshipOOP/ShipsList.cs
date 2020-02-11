@@ -43,8 +43,11 @@ namespace BattleshipOOP
                 {
                     Ship newShip = new Ship(ship.Key, UI.GetShipAlignment(ship.Key, i));
                     newShip.FullCoordinates = UI.GetFullCoordinatesFromShipHead(newShip, board, i);
+                    newShip.SafeZoneCoordinates = UI.GetSafeZoneCoordinates(newShip); 
                     Ships.Add(newShip);
+
                     Square.UpdateShipSquaresOnBoard(board, newShip);
+                    Square.UpdateShipSafeZoneOnBoard(board, newShip);
                     Console.Clear();
                     board.PrintBoard();
                 }

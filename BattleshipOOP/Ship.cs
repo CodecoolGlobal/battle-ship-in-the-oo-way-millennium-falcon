@@ -11,6 +11,7 @@ namespace BattleshipOOP
         public bool IsHorizontal { get; set; }
 
         public List<int[]> FullCoordinates;
+        public List<int[]> SafeZoneCoordinates;
 
         public Ship(string type, bool ishorizontal)
         {

@@ -114,7 +114,7 @@ namespace BattleshipOOP
                 }
                 else
                 {
-                    Console.WriteLine("Please enter valid coordinates.");
+                    Console.WriteLine("Please enter valid coordinates. You are too close!");
                 }
             }
             return GetFullShipCoordinates(ship, coordinates);
@@ -139,6 +139,25 @@ namespace BattleshipOOP
                 fullCoordinatesList.Add(shipSegment);
             }
             return fullCoordinatesList;
+        }
+
+        internal static List<int[]> GetSafeZoneCoordinates(Ship newShip)
+        {
+            List<int[]> safeZoneCoordinates = new List<int[]>();
+            foreach (var shipCoordinate in newShip.FullCoordinates)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        int[] safeCoordinate = new int[2];
+                        safeCoordinate[0] = shipCoordinate[0] - 1 + i;
+                        safeCoordinate[1] = shipCoordinate[1] - 1 + j;
+                        safeZoneCoordinates.Add(safeCoordinate);
+                    }
+                }  
+            }
+            return safeZoneCoordinates;
         }
     }
 }
