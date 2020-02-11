@@ -6,46 +6,51 @@ namespace BattleshipOOP
 {
     class ShipsList
     {
-        public Dictionary<string, int> ShipList { get; set; }
-        
-        //private List<Ship> Ships = new List<Ship>();
+        public List<Ship> Ships = new List<Ship>();
 
-        private Dictionary<string, int> RebelShips = new Dictionary<string, int>
+        public static Dictionary<string, int> RebelShips = new Dictionary<string, int>
         {
-            {"X-Wing", 1 },
-            {"Millennium Falcon", 2 },
-            {"Liberator", 3 },
-            {"Nebulon-B2 Frigate", 4 }
+            {"X-Wing", 4 },
+            {"Millennium Falcon", 3 },
+            {"Liberator", 2 },
+            {"Nebulon-B2 Frigate", 1 }
         };
 
-        private Dictionary<string, int> ImperialShips = new Dictionary<string, int>
+        public static Dictionary<string, int> ImperialShips = new Dictionary<string, int>
         {
-            {"TIE Fighter", 1 },
-            {"Destroyer", 2 },
-            {"Dreadnaught", 3 },
-            {"Deathstar", 4 }
+            {"TIE Fighter", 4 },
+            {"Destroyer", 3 },
+            {"Dreadnaught", 2 },
+            {"Deathstar", 1 }
         };
 
-        
-
-
-        public ShipsList(bool isRebellion)
+        public ShipsList()
         {
-            ShipList = (isRebellion) ? RebelShips : ImperialShips;
+
         }
 
-        /*
-        public void AddShip(string shipType, bool horizontal, List<int> coordinates)
+        private void AddShip(string shipType, bool horizontal)
         {
-            if (IsRebellion) 
+            Ships.Add(new Ship(shipType, horizontal));
+        }
+
+        public void PopulatePlayerShipsList(bool isRebellion, Space board)
+        {
+            Dictionary<string, int> workingFleet = (isRebellion) ? RebelShips : ImperialShips;
+            foreach (var ship in workingFleet)
             {
-                Ships.Add(new Ship(shipType, RebelShips[shipType], horizontal));
-            }
-            else
-            {
-                Ships.Add(new Ship(shipType, ImperialShips[shipType], horizontal));
+                for (int i = 0; i < ship.Value; i++)
+                {
+                    Ship newShip = new Ship(ship.Key, UI.GetShipAlignment());
+                    newShip.FullCoordinates = UI.GetCoordinatesForShipHead(newShip, board);
+                    Ships.Add(newShip);
+                    foreach (int[] setOfCoordinates in newShip.FullCoordinates)
+                    {
+                        board.board[setOfCoordinates[0]][setOfCoordinates[1]].IsShip = true;
+                    }
+                    board.PrintBoard();
+                }
             }
         }
-        */
     }
 }

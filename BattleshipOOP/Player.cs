@@ -14,7 +14,7 @@ namespace BattleshipOOP
         {
             Name = UI.AskName();
             IsRebellion = UI.AskIfRebellion();
-            PlayerShips = new ShipsList(IsRebellion);
+            PlayerShips = new ShipsList();
         }
     }
 }

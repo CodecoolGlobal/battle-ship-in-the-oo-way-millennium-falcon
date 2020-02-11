@@ -38,6 +38,5 @@ namespace BattleshipOOP
                 visualRepresentation = "   |";
             }
         }
-
     }
 }

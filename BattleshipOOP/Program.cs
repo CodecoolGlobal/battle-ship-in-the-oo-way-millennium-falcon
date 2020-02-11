@@ -6,19 +6,21 @@ namespace BattleshipOOP
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
-            Space space = new Space();
-            space.PrintBoard();
+            Game StarWars = new Game();
+            StarWars.Board.PrintBoard();
+            StarWars.Player.PlayerShips.PopulatePlayerShipsList(StarWars.Player.IsRebellion, StarWars.Board);
+            StarWars.Board.PrintBoard();
 
-            //testing block start
-            Ship xwing = new Ship("X-wing", 2, UI.GetShipAlignment()) ;
+
+            /*testing block start
+            Ship xwing = new Ship("X-wing", UI.GetShipAlignment()) ;
             var fullCoordinates = UI.GetCoordinatesForShipHead(xwing, space);
             foreach(int[] setOfCoordinates in fullCoordinates)
             {
                 space.board[setOfCoordinates[0]][setOfCoordinates[1]].IsShip = true;
             }
             space.PrintBoard();
-            //testing zone end
+            testing zone end*/
         }
     }
 }

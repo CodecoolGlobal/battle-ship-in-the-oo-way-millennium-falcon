@@ -10,6 +10,8 @@ namespace BattleshipOOP
         public int Lenght { get; set; }
         public bool Horizontal { get; set; }
 
+        public List<int[]> FullCoordinates;
+
         public Ship(string type, bool horizontal)
         {
             Type = type;
@@ -19,9 +21,9 @@ namespace BattleshipOOP
 
         private static int GetShipLength(string type)
         {
-            if (type == "X-wing" || type == "TIE fighter") { return 1; }
+            if (type == "X-Wing" || type == "TIE Fighter") { return 1; }
             else if (type == "Millennium Falcon" || type == "Destroyer") { return 2; }
-            else if (type == "X-wing" || type == "Dreadnaught") { return 3; }
+            else if (type == "Liberator" || type == "Dreadnaught") { return 3; }
             else if (type == "Nebulon-B2 Frigate" || type == "Deathstar") { return 4; }
             else
             {
