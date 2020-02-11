@@ -6,7 +6,7 @@ namespace BattleshipOOP
 {
     class Ship
     {
-        private string Type { get; set; }
+        public string Type { get; set; }
         public int Lenght { get; set; }
         public bool Horizontal { get; set; }
 

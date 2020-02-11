@@ -8,8 +8,9 @@ namespace BattleshipOOP
     {
         public Space Board { get; set; }
         public Player Player { get; set; }
-        private ShipsList PlayerOneShips { get; set; }
-        private ShipsList PlayerTwoShips { get; set; }
+
+        //private ShipsList PlayerOneShips { get; set; }
+        //private ShipsList PlayerTwoShips { get; set; }
 
         public Game()
         {

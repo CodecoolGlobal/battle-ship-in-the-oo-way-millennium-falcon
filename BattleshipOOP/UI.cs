@@ -5,6 +5,14 @@ namespace BattleshipOOP
 {
     static class UI
     {
+        private static Dictionary<int, string> numerals = new Dictionary<int, string>()
+        {
+            {0, "first" },
+            {1, "second" },
+            {2, "third" },
+            {3, "fourth" }
+        };
+
         public static string AskName()
         {
             Console.WriteLine("What is your name?");
@@ -40,45 +48,65 @@ namespace BattleshipOOP
             return isRebellion;
         }
 
-        public static bool GetShipAlignment()
+        public static bool GetShipAlignment(string shipType, int i)
         {
-            string answer;
             bool isHorizontal = false;
-            bool correctAnswer = false;
-            while (!correctAnswer)
+            if (shipType == "X-Wing" || shipType == "TIE Fighter")
             {
-                Console.WriteLine("Do you want to place your ship horizontally? (y/n)");
-                answer = Console.ReadLine().ToLower();
-                if (answer == "y")
+                return isHorizontal;
+            }
+            else
+            {
+                string answer;
+                bool correctAnswer = false;
+                while (!correctAnswer)
                 {
-                    isHorizontal = true;
-                    correctAnswer = true;
-                }
-                else if (answer == "n")
-                {
-                    isHorizontal = false;
-                    correctAnswer = true;
-                }
-                else
-                {
-                    Console.WriteLine("Wrong answer! You have to pick yes-(y) or no-(n).");
+                    Console.WriteLine($"Do you want to place {numerals[i]} \"{shipType}\" horizontally? (y/n)");
+                    answer = Console.ReadLine().ToLower();
+                    if (answer == "y")
+                    {
+                        isHorizontal = true;
+                        correctAnswer = true;
+                    }
+                    else if (answer == "n")
+                    {
+                        isHorizontal = false;
+                        correctAnswer = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong answer! You have to pick yes-(y) or no-(n).");
+                    }
                 }
             }
             return isHorizontal;
         }
 
-        public static List<int[]> GetCoordinatesForShipHead(Ship ship, Space space)
+        public static List<int[]> GetFullCoordinatesFromShipHead(Ship ship, Space space, int i)
         {
             int[] coordinates = {-1, -1};   
    
             bool correctAnswer = false;
             while (!correctAnswer)
             {
-                Console.WriteLine("Where do you want to place your ship?");
+                Console.WriteLine($"Where do you want to place your {numerals[i]} \"{ship.Type}\"?");
                 string userPlacement = Console.ReadLine();
 
-                coordinates[0] = int.Parse(userPlacement.Substring(1)) - 1; 
-                coordinates[1] = Validation.TranslateCoordinates(userPlacement[0].ToString());
+                try
+                {
+                    coordinates[0] = int.Parse(userPlacement.Substring(1)) - 1;
+                    coordinates[1] = Validation.TranslateCoordinates(userPlacement[0].ToString());
+                } 
+                catch(FormatException)
+                {
+                    Console.WriteLine("Wrong coordinates format. First enter column letter, than row number. For example \"a1\".");
+                    continue;
+                }
+                catch(ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                    continue;
+                }
 
                 if (Validation.isAnswerValid(coordinates) && !Validation.IsThereAShip(space, ship, coordinates))
                 {

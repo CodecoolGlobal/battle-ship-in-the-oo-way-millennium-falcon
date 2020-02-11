@@ -7,6 +7,8 @@ namespace BattleshipOOP
         static void Main(string[] args)
         {
             Game StarWars = new Game();
+
+            Console.Clear();
             StarWars.Board.PrintBoard();
             StarWars.Player.PlayerShips.PopulatePlayerShipsList(StarWars.Player.IsRebellion, StarWars.Board);
             StarWars.Board.PrintBoard();

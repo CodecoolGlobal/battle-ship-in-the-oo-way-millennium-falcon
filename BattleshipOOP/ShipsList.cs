@@ -41,13 +41,14 @@ namespace BattleshipOOP
             {
                 for (int i = 0; i < ship.Value; i++)
                 {
-                    Ship newShip = new Ship(ship.Key, UI.GetShipAlignment());
-                    newShip.FullCoordinates = UI.GetCoordinatesForShipHead(newShip, board);
+                    Ship newShip = new Ship(ship.Key, UI.GetShipAlignment(ship.Key, i));
+                    newShip.FullCoordinates = UI.GetFullCoordinatesFromShipHead(newShip, board, i);
                     Ships.Add(newShip);
                     foreach (int[] setOfCoordinates in newShip.FullCoordinates)
                     {
                         board.board[setOfCoordinates[0]][setOfCoordinates[1]].IsShip = true;
                     }
+                    Console.Clear();
                     board.PrintBoard();
                 }
             }
