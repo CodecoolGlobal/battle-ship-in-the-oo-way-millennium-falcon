@@ -96,25 +96,20 @@ namespace BattleshipOOP
         private static List<int[]> GetFullShipCoordinates(Ship ship, int[] headCoordinates)
         {
             List<int[]> fullCoordinatesList = new List<int[]>();
-            if (ship.Horizontal)
+            for (int i = 0; i < ship.Lenght; i++)
             {
-                for (int i = 0; i < ship.Lenght; i++)
+                int[] shipSegment = new int[2];
+                if(ship.Horizontal)
                 {
-                    int[] shipSegment = new int[2];
                     shipSegment[0] = headCoordinates[0];
                     shipSegment[1] = headCoordinates[1] + i;
-                    fullCoordinatesList.Add(shipSegment);
                 }
-            }
-            else
-            {
-                for (int i = 0; i < ship.Lenght; i++)
+                else
                 {
-                    int[] shipSegment = new int[2];
                     shipSegment[0] = headCoordinates[0] + i;
                     shipSegment[1] = headCoordinates[1];
-                    fullCoordinatesList.Add(shipSegment);
                 }
+                fullCoordinatesList.Add(shipSegment);
             }
             return fullCoordinatesList;
         }
