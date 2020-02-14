@@ -10,10 +10,10 @@ namespace BattleshipOOP
         public bool IsRebellion { get; set; }
         public ShipsList PlayerShips { get; set; }
 
-        public Player()
+        public Player(string name, bool isRebellion)
         {
-            Name = UI.AskName();
-            IsRebellion = UI.AskIfRebellion();
+            Name = name;
+            IsRebellion = isRebellion;
             PlayerShips = new ShipsList();
         }
     }

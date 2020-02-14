@@ -120,7 +120,7 @@ namespace BattleshipOOP
             return GetFullShipCoordinates(ship, coordinates);
         }
 
-        private static List<int[]> GetFullShipCoordinates(Ship ship, int[] headCoordinates)
+        public static List<int[]> GetFullShipCoordinates(Ship ship, int[] headCoordinates)
         {
             List<int[]> fullCoordinatesList = new List<int[]>();
             for (int i = 0; i < ship.Lenght; i++)
@@ -139,6 +139,13 @@ namespace BattleshipOOP
                 fullCoordinatesList.Add(shipSegment);
             }
             return fullCoordinatesList;
+        }
+
+        public static int[] RandomShipHeadCoordinates()
+        {
+            Random rand = new Random();
+            int[] randomHeadCoordiantes = {rand.Next(10), rand.Next(10)};
+            return randomHeadCoordiantes;
         }
 
         internal static List<int[]> GetSafeZoneCoordinates(Ship newShip)

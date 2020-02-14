@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BattleshipOOP
 {
@@ -30,6 +29,12 @@ namespace BattleshipOOP
             {
                 throw new ArgumentException("There is no such ship type.");
             }
+        }
+
+        public static bool randomShipAlligment()
+        {
+            Random rand = new Random();
+            return (rand.Next(2) == 1) ? true : false;
         }
     }
 }

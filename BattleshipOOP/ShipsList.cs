@@ -53,5 +53,37 @@ namespace BattleshipOOP
                 }
             }
         }
+
+        public void AutomaticShipListPopulation(bool isRebellion, Space aiBoard)
+        {
+            Dictionary<string, int> workingFleet = (isRebellion) ? RebelShips : ImperialShips;
+            foreach (var ship in workingFleet)
+            {
+                for (int i = 0; i < ship.Value; i++)
+                {
+                    Ship newShip = new Ship(ship.Key, Ship.randomShipAlligment());
+
+                    int[] randomHeadCoordinates = new int[2];
+
+                    bool correctRandomHeadCoordiantes = false;
+                    while (!correctRandomHeadCoordiantes)
+                    {
+                        randomHeadCoordinates = UI.RandomShipHeadCoordinates();
+                        if (!Validation.IsThereAShip(aiBoard, newShip, randomHeadCoordinates))
+                        {
+                            correctRandomHeadCoordiantes = true;
+                        }
+                    }
+                    newShip.FullCoordinates = UI.GetFullShipCoordinates(newShip, randomHeadCoordinates);
+                    newShip.SafeZoneCoordinates = UI.GetSafeZoneCoordinates(newShip);
+                    Ships.Add(newShip);
+
+                    Square.UpdateShipSquaresOnBoard(aiBoard, newShip);
+                    Square.UpdateShipSafeZoneOnBoard(aiBoard, newShip);
+                    Console.Clear();
+                    aiBoard.PrintBoard();
+                }
+            }
+        }
     }
 }

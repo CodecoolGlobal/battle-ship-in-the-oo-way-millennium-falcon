@@ -9,9 +9,10 @@ namespace BattleshipOOP
             Game StarWars = new Game();
 
             Console.Clear();
-            StarWars.Board.PrintBoard();
-            StarWars.Player.PlayerShips.PopulatePlayerShipsList(StarWars.Player.IsRebellion, StarWars.Board);
-            StarWars.Board.PrintBoard();
+            //StarWars.Board.PrintBoard();
+            //StarWars.Player.PlayerShips.PopulatePlayerShipsList(StarWars.Player.IsRebellion, StarWars.Board);
+            StarWars.AIOpponent.PlayerShips.AutomaticShipListPopulation(StarWars.AIOpponent.IsRebellion, StarWars.AIBoard);
+            //StarWars.Board.PrintBoard();
 
 
             /*testing block start
