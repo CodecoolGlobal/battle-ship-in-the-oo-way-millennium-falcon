@@ -27,10 +27,10 @@ namespace BattleshipOOP
         public void PrintBoard()
         {
             string separatorLine = "--------------------------------------------";
-            Console.WriteLine("   | a | b | c | d | e | f | g | h | i | j |");
-            Console.WriteLine(separatorLine);
             int rowNumber = 1;
             string rowToPrint;
+            Console.WriteLine("   | a | b | c | d | e | f | g | h | i | j |");
+            Console.WriteLine(separatorLine);
 
             foreach (List<Square> element in board)
             {

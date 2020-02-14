@@ -15,8 +15,24 @@ namespace BattleshipOOP
 
         public static string AskName()
         {
-            Console.WriteLine("What is your name?");
-            return Console.ReadLine();
+            string nameAnswer = "";
+            string nameQuestion = "What is your name?";
+            string feedback;
+            string notCorrectAnswerFeedback = "Ooops! It looks like you have not provided any answer. Try again!";
+            while (!CheckName(nameAnswer))
+            {
+                Console.WriteLine(nameQuestion);
+                nameAnswer = Console.ReadLine();
+                feedback = (!CheckName(nameAnswer)) ? notCorrectAnswerFeedback : $"Welcome {nameAnswer}!";
+                Console.WriteLine(feedback);
+            }
+
+            return nameAnswer;
+        }
+
+        public static bool CheckName(string name)
+        {
+            return (name.Length > 0 ? true : false);
         }
 
         public static bool AskIfRebellion()
@@ -165,6 +181,20 @@ namespace BattleshipOOP
                 }  
             }
             return safeZoneCoordinates;
+        }
+
+        public static void StartGameCountDown(int positionX, int positionY)
+        {
+            int counter = 3;
+            for (int a = counter; a > 0; a--)
+            {
+                Console.SetCursorPosition(positionX, positionY);
+                Console.Write("Good luck! The Game will start in {0} ", a);  // Override complete previous contents
+                // for (int b = a; b < counter + 1; b++){
+                //     Console.Write("\n.");
+                // }
+                System.Threading.Thread.Sleep(1000);
+            }
         }
     }
 }

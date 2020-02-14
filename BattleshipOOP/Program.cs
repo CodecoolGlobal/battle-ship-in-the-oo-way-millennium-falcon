@@ -6,6 +6,7 @@ namespace BattleshipOOP
     {
         static void Main(string[] args)
         {
+            Console.Clear();
             Game StarWars = new Game();
 
             Console.Clear();

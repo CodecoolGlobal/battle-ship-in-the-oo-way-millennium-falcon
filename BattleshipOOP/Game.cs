@@ -19,10 +19,11 @@ namespace BattleshipOOP
             Board = new Space();
             AIBoard = new Space();
             Player = new Player(UI.AskName(), UI.AskIfRebellion());
+            UI.StartGameCountDown(Console.CursorLeft, Console.CursorTop);
             AIOpponent = new Player("AI", !Player.IsRebellion);
             
             //PlayerOneShips = new ShipsList(Player.IsRebellion);
             //PlayerTwoShips = new ShipsList(!Player.IsRebellion);
-        }
+        }   
     }
 }
