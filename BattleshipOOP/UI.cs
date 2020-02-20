@@ -13,17 +13,42 @@ namespace BattleshipOOP
             {3, "fourth" }
         };
 
+        public static void PrintWelcomeMessage()
+        {
+            string welcomeMessage = "Welcome to the Galaxy Battle Ship!";
+            Console.WriteLine(welcomeMessage);
+        }
+
+        public static bool AskIfAutomaticFill()
+        {
+            Console.WriteLine("Do you want to fill your board automatically? (y/n)");
+            string answer = "";
+            while (answer != "y" && answer != "n")
+            {
+                answer = Console.ReadLine().ToLower();
+                if (answer != "y" && answer != "n")
+                {
+                    Console.WriteLine("Wrong answer");
+                }
+
+            }
+
+            return (answer == "y");
+
+        }
+
+
         public static string AskName()
         {
             string nameAnswer = "";
-            string nameQuestion = "What is your name?";
+            string nameQuestion = "What is your name, challenger?";
             string feedback;
             string notCorrectAnswerFeedback = "Ooops! It looks like you have not provided any answer. Try again!";
             while (!CheckName(nameAnswer))
             {
                 Console.WriteLine(nameQuestion);
                 nameAnswer = Console.ReadLine();
-                feedback = (!CheckName(nameAnswer)) ? notCorrectAnswerFeedback : $"Welcome {nameAnswer}!";
+                feedback = (!CheckName(nameAnswer)) ? notCorrectAnswerFeedback : $"Welcome captain {nameAnswer}!";
                 Console.WriteLine(feedback);
             }
 

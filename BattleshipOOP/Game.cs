@@ -6,24 +6,27 @@ namespace BattleshipOOP
 {
     class Game
     {
-        public Space Board { get; set; }
-        public Space AIBoard { get; set; }
+
         public Player Player { get; set; }
         public Player AIOpponent { get; set; }
 
-        //private ShipsList PlayerOneShips { get; set; }
-        //private ShipsList PlayerTwoShips { get; set; }
-
         public Game()
         {
-            Board = new Space();
-            AIBoard = new Space();
-            Player = new Player(UI.AskName(), UI.AskIfRebellion());
+            UI.PrintWelcomeMessage();
+            Player = new Player(UI.AskName(), UI.AskIfRebellion(), true);
+            AIOpponent = new Player("AI", !Player.IsRebellion, false);
             UI.StartGameCountDown(Console.CursorLeft, Console.CursorTop);
-            AIOpponent = new Player("AI", !Player.IsRebellion);
             
-            //PlayerOneShips = new ShipsList(Player.IsRebellion);
-            //PlayerTwoShips = new ShipsList(!Player.IsRebellion);
-        }   
+        }
+        
+        public void PrintBothBoards()
+        {
+            Console.Clear();
+            Console.WriteLine("This is your board:\n");
+            Player.PrintBoard();
+            Console.WriteLine("\nThis is oponent's board:\n");
+            AIOpponent.PrintBoard();
+
+        }
     }
 }

@@ -48,8 +48,6 @@ namespace BattleshipOOP
 
                     Square.UpdateShipSquaresOnBoard(board, newShip);
                     Square.UpdateShipSafeZoneOnBoard(board, newShip);
-                    Console.Clear();
-                    board.PrintBoard();
                 }
             }
         }
@@ -80,8 +78,6 @@ namespace BattleshipOOP
 
                     Square.UpdateShipSquaresOnBoard(aiBoard, newShip);
                     Square.UpdateShipSafeZoneOnBoard(aiBoard, newShip);
-                    Console.Clear();
-                    aiBoard.PrintBoard();
                 }
             }
         }

@@ -21,37 +21,55 @@ namespace BattleshipOOP
             }
         }
 
-        //public void UpdateSpace(int[])
- 
+        private string separatorLine = "--------------------------------------------";
+        private string topLine = "   | a | b | c | d | e | f | g | h | i | j |";
+        private string shortSeparator = " |";
+        private string longSeparator = "  |";
 
-        public void PrintBoard()
+        private void PrintTopLines()
         {
-            string separatorLine = "--------------------------------------------";
+            Console.WriteLine(topLine);
+            Console.WriteLine(separatorLine);
+        }
+
+
+        public void PrintBoard(bool isActivePlayer)
+        {
+
             int rowNumber = 1;
             string rowToPrint;
-            Console.WriteLine("   | a | b | c | d | e | f | g | h | i | j |");
-            Console.WriteLine(separatorLine);
+            PrintTopLines();
 
             foreach (List<Square> element in board)
             {
                 if (rowNumber < 10)
                 {
-                    rowToPrint = rowNumber.ToString() + "  |";
+                    rowToPrint = rowNumber.ToString() + longSeparator;
                 }
                 else
                 {
-                    rowToPrint = rowNumber.ToString() + " |";
+                    rowToPrint = rowNumber.ToString() + shortSeparator;
                 }
                 
                 foreach (Square square in element)
                 {
                     square.updateVisualRepresentation();
-                    rowToPrint += square.visualRepresentation;
+                    if (!isActivePlayer && square.visualRepresentation == square.notHitShipMark)
+                    {
+                        rowToPrint += square.notHitEmptyMark;
+                    }
+                    else
+                    {
+                        rowToPrint += square.visualRepresentation;
+                    }
+                    
                 }
                 Console.WriteLine(rowToPrint);
                 Console.WriteLine(separatorLine);
                 rowNumber++;
             }  
         }
+
+   
     }
 }

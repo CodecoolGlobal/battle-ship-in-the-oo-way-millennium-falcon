@@ -9,35 +9,38 @@ namespace BattleshipOOP
         private bool IsHit { get; set; }
         public bool IsShip { get; set; }
         public bool IsTooClose { get; set; }
-        //private int[] Coordinates { get; set; }
 
         public string visualRepresentation;
+        public string hitShipMark = " X |";
+        public string hitEmptyMark = " + |";
+        public string notHitShipMark = " # |";
+        public string notHitEmptyMark = "   |";
 
         public Square()
         {
             IsShip = false;
             IsHit = false;
             IsTooClose = false;
-            visualRepresentation = "   |";
+            visualRepresentation = notHitEmptyMark;
         }
 
         public void updateVisualRepresentation()
         {
             if (IsHit && IsShip)
             {
-                visualRepresentation = " X |";
+                visualRepresentation = hitShipMark;
             }
             else if (IsHit && !IsShip)
             {
-                visualRepresentation = " + |";
+                visualRepresentation = hitEmptyMark;
             }
             else if (!IsHit && IsShip)
             {
-                visualRepresentation = " # |";
+                visualRepresentation = notHitShipMark;
             }
             else
             {
-                visualRepresentation = "   |";
+                visualRepresentation = notHitEmptyMark;
             }
         }
 
