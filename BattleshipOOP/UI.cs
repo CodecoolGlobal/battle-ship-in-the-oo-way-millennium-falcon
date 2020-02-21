@@ -127,7 +127,7 @@ namespace BattleshipOOP
                 try
                 {
                     coordinates[0] = int.Parse(userPlacement.Substring(1)) - 1;
-                    coordinates[1] = Validation.TranslateCoordinates(userPlacement[0].ToString());
+                    coordinates[1] = Validation.TranslateCoordinates(userPlacement[0]);
                 }
                 catch (FormatException)
                 {
@@ -140,7 +140,10 @@ namespace BattleshipOOP
                     continue;
                 }
 
-                correctAnswer = true;
+                if (Validation.isAnswerValid(coordinates))
+                    correctAnswer = true;
+                else
+                    Console.WriteLine("You are out of range!");
  
             }
             return coordinates;
