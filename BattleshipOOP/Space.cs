@@ -70,6 +70,38 @@ namespace BattleshipOOP
             }  
         }
 
+        public bool CheckIfShip(int[] coordinates)
+        {
+            return board[coordinates[0]][coordinates[1]].IsShip;
+        }
+
+        public bool HandleShotOnSquare(int[] coordinates)
+        {
+            bool isCorrect = false;
+            Square square = board[coordinates[0]][coordinates[1]];
+
+            if (square.IsHit)
+            {
+                Console.WriteLine("You have shot this field already!");
+            }
+            else if (square.IsShip)
+            {
+                Console.WriteLine("You hit a ship!");
+                square.IsHit = true;
+                square.updateVisualRepresentation();
+                isCorrect = true;
+            }
+            else
+            {
+                Console.WriteLine("You hit nothing!");
+                square.IsHit = true;
+                square.updateVisualRepresentation();
+                isCorrect = true;
+            }
+
+            return isCorrect;
+        }
+
    
     }
 }

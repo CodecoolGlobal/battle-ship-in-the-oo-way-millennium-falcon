@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BattleshipOOP
@@ -27,6 +28,25 @@ namespace BattleshipOOP
         public ShipsList()
         {
 
+        }
+
+        public Ship GetShipAtCoordinates(int[] coordinates)
+        {
+            foreach (Ship ship in Ships)
+            {
+                if (ship.FullCoordinates.Any(x => x[0] == coordinates[0] && x[1] == coordinates[1]))
+                {
+                    return ship;
+                }
+            }
+
+            return null;
+        }
+
+        public void HitShip(int[] coordinates)
+        {
+            Ship hitShip = GetShipAtCoordinates(coordinates);
+            hitShip.HitShip();
         }
 
         public void PopulatePlayerShipsList(bool isRebellion, Space board)
@@ -80,5 +100,6 @@ namespace BattleshipOOP
                 }
             }
         }
+
     }
 }

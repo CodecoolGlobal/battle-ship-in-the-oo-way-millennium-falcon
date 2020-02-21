@@ -8,6 +8,7 @@ namespace BattleshipOOP
         public string Type { get; set; }
         public int Lenght { get; set; }
         public bool IsHorizontal { get; set; }
+        public bool IsAlive { get; set; }
 
         public List<int[]> FullCoordinates;
         public List<int[]> SafeZoneCoordinates;
@@ -23,6 +24,17 @@ namespace BattleshipOOP
             Type = type;
             Lenght = GetShipLength(type);
             IsHorizontal = ishorizontal;
+            IsAlive = true;
+        }
+
+        public void HitShip()
+        {
+            Console.WriteLine(Lenght);
+            if (--Lenght == 0)
+            {
+                Console.WriteLine("The ship has sunk");
+                IsAlive = false;
+            }
         }
 
 

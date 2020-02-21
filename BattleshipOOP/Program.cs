@@ -8,9 +8,9 @@ namespace BattleshipOOP
         {
             Console.Clear();
             Game StarWars = new Game();
-            Console.Clear();
             StarWars.PopulateAllShips();
             StarWars.PrintBothBoards();
+            StarWars.HandleActions();
 
 
             /*testing block start

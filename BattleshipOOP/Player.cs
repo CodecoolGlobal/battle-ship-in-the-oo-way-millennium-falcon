@@ -11,6 +11,7 @@ namespace BattleshipOOP
         public ShipsList PlayerShips { get; set; }
         public Space Board { get; set; }
         private bool IsActivePlayer { get; set; }
+        public bool IsLost { get; set; }
 
         public Player(string name, bool isRebellion, bool isActivePlayer)
         {
@@ -19,8 +20,22 @@ namespace BattleshipOOP
             PlayerShips = new ShipsList();
             IsActivePlayer = isActivePlayer;
             Board = new Space();
+            IsLost = false;
         }
 
+        public bool HandleShooting(int[] coordinates)
+        {
+            bool correctShot = Board.HandleShotOnSquare(coordinates);
+
+            if (Board.CheckIfShip(coordinates) && correctShot)
+            {
+                PlayerShips.HitShip(coordinates);
+            }
+
+            return correctShot;
+        }
+
+ 
         public void PopulatePlayerShipList()
         {
             PlayerShips.PopulatePlayerShipsList(IsRebellion, Board);

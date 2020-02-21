@@ -45,8 +45,20 @@ namespace BattleshipOOP
 
         public void HandleActions()
         {
-            Console.WriteLine("Which field do you want to shoot?");
-            string playerChoice = Console.ReadLine();
+            while (!Player.IsLost && !AIOpponent.IsLost)
+            {
+                Console.WriteLine("Which field do you want to shoot?");
+
+                bool correctCoordinates = false;
+                while (!correctCoordinates)
+                {
+                    int[] cooridnates = UI.GetPairCoordinates();
+                    Console.Clear();
+                    correctCoordinates = AIOpponent.HandleShooting(cooridnates);
+                    AIOpponent.PrintBoard();
+
+                }
+            }
         }
     }
 }
