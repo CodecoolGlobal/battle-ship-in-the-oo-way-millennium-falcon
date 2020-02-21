@@ -28,5 +28,19 @@ namespace BattleshipOOP
             AIOpponent.PrintBoard();
 
         }
+
+        public void PopulateAllShips()
+        {
+            if (UI.AskIfAutomaticFill())
+            {
+                Player.AutomaticShipPopulation();
+            }
+            else
+            {
+                Player.PopulatePlayerShipList();
+            }
+
+            AIOpponent.AutomaticShipPopulation();
+        }
     }
 }

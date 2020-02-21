@@ -9,17 +9,7 @@ namespace BattleshipOOP
             Console.Clear();
             Game StarWars = new Game();
             Console.Clear();
-
-            if (UI.AskIfAutomaticFill())
-            {
-                StarWars.Player.PlayerShips.AutomaticShipListPopulation(StarWars.Player.IsRebellion, StarWars.Player.Board);
-            }
-            else
-            {
-                StarWars.Player.PlayerShips.PopulatePlayerShipsList(StarWars.Player.IsRebellion, StarWars.Player.Board);
-            }
-            
-            StarWars.AIOpponent.PlayerShips.AutomaticShipListPopulation(StarWars.AIOpponent.IsRebellion, StarWars.AIOpponent.Board);
+            StarWars.PopulateAllShips();
             StarWars.PrintBothBoards();
 
 

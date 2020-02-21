@@ -21,6 +21,16 @@ namespace BattleshipOOP
             Board = new Space();
         }
 
+        public void PopulatePlayerShipList()
+        {
+            PlayerShips.PopulatePlayerShipsList(IsRebellion, Board);
+        }
+
+        public void AutomaticShipPopulation()
+        {
+            PlayerShips.AutomaticShipListPopulation(IsRebellion, Board);
+        }
+
         public void PrintBoard()
         {
             Board.PrintBoard(IsActivePlayer);
