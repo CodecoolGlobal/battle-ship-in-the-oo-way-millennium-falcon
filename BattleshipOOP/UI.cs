@@ -116,32 +116,47 @@ namespace BattleshipOOP
             return isHorizontal;
         }
 
-        public static List<int[]> GetFullCoordinatesFromShipHead(Ship ship, Space space, int i)
+        public static int[] GetPairCoordinates()
         {
-            int[] coordinates = {-1, -1};   
-   
+            int[] coordinates = { -1, -1 };
             bool correctAnswer = false;
             while (!correctAnswer)
             {
-                Console.WriteLine($"Where do you want to place your {numerals[i]} \"{ship.Type}\"?");
                 string userPlacement = Console.ReadLine();
 
                 try
                 {
                     coordinates[0] = int.Parse(userPlacement.Substring(1)) - 1;
                     coordinates[1] = Validation.TranslateCoordinates(userPlacement[0].ToString());
-                } 
-                catch(FormatException)
+                }
+                catch (FormatException)
                 {
                     Console.WriteLine("Wrong coordinates format. First enter column letter, than row number. For example \"a1\".");
                     continue;
                 }
-                catch(ArgumentException e)
+                catch (ArgumentException error)
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine(error.Message);
                     continue;
                 }
 
+                correctAnswer = true;
+ 
+            }
+            return coordinates;
+        }
+
+        public static List<int[]> GetFullCoordinatesFromShipHead(Ship ship, Space space, int i)
+        {
+            int[] coordinates = { -1, -1 };
+
+            bool correctAnswer = false;
+            while (!correctAnswer)
+            {
+                Console.WriteLine($"Where do you want to place your {numerals[i]} \"{ship.Type}\"?");
+                coordinates = GetPairCoordinates();
+
+             
                 if (Validation.isAnswerValid(coordinates) && !Validation.IsThereAShip(space, ship, coordinates))
                 {
                     correctAnswer = true;

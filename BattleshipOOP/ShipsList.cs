@@ -37,6 +37,7 @@ namespace BattleshipOOP
             {
                 for (int i = 0; i < ship.Value; i++)
                 {
+                    board.PrintBoard(true);
                     Ship newShip = (ship.Key == "X-Wing" || ship.Key == "TIE Fighter") ? 
                         new Ship(ship.Key) : new Ship(ship.Key, UI.GetShipAlignment(ship.Key, i));
 

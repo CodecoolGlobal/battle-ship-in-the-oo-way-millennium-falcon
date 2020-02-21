@@ -42,5 +42,11 @@ namespace BattleshipOOP
 
             AIOpponent.AutomaticShipPopulation();
         }
+
+        public void HandleActions()
+        {
+            Console.WriteLine("Which field do you want to shoot?");
+            string playerChoice = Console.ReadLine();
+        }
     }
 }

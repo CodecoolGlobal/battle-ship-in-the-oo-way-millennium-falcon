@@ -42,7 +42,7 @@ namespace BattleshipOOP
         public static bool randomShipAlligment()
         {
             Random rand = new Random();
-            return (rand.Next(2) == 1) ? true : false;
+            return (rand.Next(2) == 1);
         }
     }
 }
