@@ -56,11 +56,7 @@ namespace BattleshipOOP
         {
             foreach (int[] setOfCoordinates in newShip.SafeZoneCoordinates)
             {
-                if(setOfCoordinates[0]<0 || setOfCoordinates[0]>9 ||setOfCoordinates[1] <0 || setOfCoordinates[1] > 9)
-                {
-                    continue;
-                }
-                else
+                if(!(setOfCoordinates[0]<0 || setOfCoordinates[0]>9 ||setOfCoordinates[1] <0 || setOfCoordinates[1] > 9))
                 {
                     board.board[setOfCoordinates[0]][setOfCoordinates[1]].IsTooClose = true;
                 }

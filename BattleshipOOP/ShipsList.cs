@@ -29,19 +29,17 @@ namespace BattleshipOOP
 
         }
 
-        private void AddShip(string shipType, bool horizontal)
-        {
-            Ships.Add(new Ship(shipType, horizontal));
-        }
-
         public void PopulatePlayerShipsList(bool isRebellion, Space board)
         {
             Dictionary<string, int> workingFleet = (isRebellion) ? RebelShips : ImperialShips;
+
             foreach (var ship in workingFleet)
             {
                 for (int i = 0; i < ship.Value; i++)
                 {
-                    Ship newShip = new Ship(ship.Key, UI.GetShipAlignment(ship.Key, i));
+                    Ship newShip = (ship.Key == "X-Wing" || ship.Key == "TIE Fighter") ? 
+                        new Ship(ship.Key) : new Ship(ship.Key, UI.GetShipAlignment(ship.Key, i));
+
                     newShip.FullCoordinates = UI.GetFullCoordinatesFromShipHead(newShip, board, i);
                     newShip.SafeZoneCoordinates = UI.GetSafeZoneCoordinates(newShip); 
                     Ships.Add(newShip);
@@ -52,7 +50,7 @@ namespace BattleshipOOP
             }
         }
 
-        public void AutomaticShipListPopulation(bool isRebellion, Space aiBoard)
+        public void AutomaticShipListPopulation(bool isRebellion, Space board)
         {
             Dictionary<string, int> workingFleet = (isRebellion) ? RebelShips : ImperialShips;
             foreach (var ship in workingFleet)
@@ -67,7 +65,7 @@ namespace BattleshipOOP
                     while (!correctRandomHeadCoordiantes)
                     {
                         randomHeadCoordinates = UI.RandomShipHeadCoordinates();
-                        if (!Validation.IsThereAShip(aiBoard, newShip, randomHeadCoordinates))
+                        if (!Validation.IsThereAShip(board, newShip, randomHeadCoordinates))
                         {
                             correctRandomHeadCoordiantes = true;
                         }
@@ -76,8 +74,8 @@ namespace BattleshipOOP
                     newShip.SafeZoneCoordinates = UI.GetSafeZoneCoordinates(newShip);
                     Ships.Add(newShip);
 
-                    Square.UpdateShipSquaresOnBoard(aiBoard, newShip);
-                    Square.UpdateShipSafeZoneOnBoard(aiBoard, newShip);
+                    Square.UpdateShipSquaresOnBoard(board, newShip);
+                    Square.UpdateShipSafeZoneOnBoard(board, newShip);
                 }
             }
         }

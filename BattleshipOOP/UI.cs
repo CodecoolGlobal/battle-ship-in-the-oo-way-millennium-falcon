@@ -92,32 +92,25 @@ namespace BattleshipOOP
         public static bool GetShipAlignment(string shipType, int i)
         {
             bool isHorizontal = false;
-            if (shipType == "X-Wing" || shipType == "TIE Fighter")
+            string answer;
+            bool correctAnswer = false;
+            while (!correctAnswer)
             {
-                return isHorizontal;
-            }
-            else
-            {
-                string answer;
-                bool correctAnswer = false;
-                while (!correctAnswer)
+                Console.WriteLine($"Do you want to place {numerals[i]} \"{shipType}\" horizontally? (y/n)");
+                answer = Console.ReadLine().ToLower();
+                if (answer == "y")
                 {
-                    Console.WriteLine($"Do you want to place {numerals[i]} \"{shipType}\" horizontally? (y/n)");
-                    answer = Console.ReadLine().ToLower();
-                    if (answer == "y")
-                    {
-                        isHorizontal = true;
-                        correctAnswer = true;
-                    }
-                    else if (answer == "n")
-                    {
-                        isHorizontal = false;
-                        correctAnswer = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Wrong answer! You have to pick yes-(y) or no-(n).");
-                    }
+                    isHorizontal = true;
+                    correctAnswer = true;
+                }
+                else if (answer == "n")
+                {
+                    isHorizontal = false;
+                    correctAnswer = true;
+                }
+                else
+                {
+                    Console.WriteLine("Wrong answer! You have to pick yes-(y) or no-(n).");
                 }
             }
             return isHorizontal;

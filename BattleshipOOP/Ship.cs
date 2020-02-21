@@ -12,12 +12,20 @@ namespace BattleshipOOP
         public List<int[]> FullCoordinates;
         public List<int[]> SafeZoneCoordinates;
 
+
+        public Ship(string type) : this(type, true)
+        {
+
+        }
+
         public Ship(string type, bool ishorizontal)
         {
             Type = type;
             Lenght = GetShipLength(type);
             IsHorizontal = ishorizontal;
         }
+
+
 
         private static int GetShipLength(string type)
         {

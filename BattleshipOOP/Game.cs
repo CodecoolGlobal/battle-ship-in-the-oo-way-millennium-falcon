@@ -15,7 +15,7 @@ namespace BattleshipOOP
             UI.PrintWelcomeMessage();
             Player = new Player(UI.AskName(), UI.AskIfRebellion(), true);
             AIOpponent = new Player("AI", !Player.IsRebellion, false);
-            UI.StartGameCountDown(Console.CursorLeft, Console.CursorTop);
+            // UI.StartGameCountDown(Console.CursorLeft, Console.CursorTop);
             
         }
         
