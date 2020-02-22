@@ -57,15 +57,15 @@ namespace BattleshipOOP
         public static int[] GetAICoordinates()
         {
             int minBoardCoord = 0;
-            int maxBoardCoord = 10;
+            int maxBoardCoord = 9;
             int[] AIcoordinates = new int[2];
             Random random = new Random();
-            int x = random.Next(minBoardCoord, maxBoardCoord);
-            int y = random.Next(minBoardCoord, maxBoardCoord);
 
-            AIcoordinates[0] = x;
-            AIcoordinates[1] = y;
-            UI.PrintMessage($"X: {x} Y: {y}");
+            AIcoordinates[0] = random.Next(minBoardCoord, maxBoardCoord);
+            AIcoordinates[1] = random.Next(minBoardCoord, maxBoardCoord);
+
+            char charRepresentation = Convert.ToChar(('A' + AIcoordinates[1]));
+            UI.PrintMessage($"Coordinates: {charRepresentation}{AIcoordinates[0]+1}");
 
             return AIcoordinates;
         }
