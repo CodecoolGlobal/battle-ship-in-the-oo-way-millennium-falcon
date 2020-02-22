@@ -51,7 +51,7 @@ namespace BattleshipOOP
             }
         }
 
-        public static bool randomShipAlligment()
+        public static bool GetRandomShipAlligment()
         {
             Random rand = new Random();
             return (rand.Next(2) == 1);

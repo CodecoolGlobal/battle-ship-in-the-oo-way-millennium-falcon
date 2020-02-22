@@ -140,7 +140,7 @@ namespace BattleshipOOP
                     continue;
                 }
 
-                if (Validation.isAnswerValid(coordinates))
+                if (Validation.IsAnswerValid(coordinates))
                     correctAnswer = true;
                 else
                     UI.PrintMessage("You are out of range!");
@@ -160,7 +160,7 @@ namespace BattleshipOOP
                 coordinates = GetPairCoordinates();
 
              
-                if (Validation.isAnswerValid(coordinates) && !Validation.IsThereAShip(space, ship, coordinates))
+                if (Validation.IsAnswerValid(coordinates) && !Validation.IsThereAShip(space, ship, coordinates))
                 {
                     correctAnswer = true;
                 }

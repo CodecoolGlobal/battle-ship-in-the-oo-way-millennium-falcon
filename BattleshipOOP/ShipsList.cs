@@ -71,7 +71,7 @@ namespace BattleshipOOP
             {
                 for (int i = 0; i < ship.Value; i++)
                 {
-                    Ship newShip = new Ship(ship.Key, Ship.randomShipAlligment());
+                    Ship newShip = new Ship(ship.Key, Ship.GetRandomShipAlligment());
 
                     int[] randomHeadCoordinates = new int[2];
 
