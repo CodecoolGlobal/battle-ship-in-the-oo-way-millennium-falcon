@@ -25,20 +25,13 @@ namespace BattleshipOOP
             {"Deathstar", 1 }
         };
 
-        public ShipsList()
-        {
-
-        }
+        public ShipsList() { }
 
         public Ship GetShipAtCoordinates(int[] coordinates)
         {
             foreach (Ship ship in Ships)
-            {
                 if (ship.FullCoordinates.Any(x => x[0] == coordinates[0] && x[1] == coordinates[1]))
-                {
                     return ship;
-                }
-            }
 
             return null;
         }
