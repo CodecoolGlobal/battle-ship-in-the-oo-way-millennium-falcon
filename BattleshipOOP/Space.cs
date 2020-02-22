@@ -101,6 +101,23 @@ namespace BattleshipOOP
             return isCorrect;
         }
 
-   
+        internal void UpdateShipSquaresOnBoard(Ship newShip)
+        {
+            foreach (int[] setOfCoordinates in newShip.FullCoordinates)
+            {
+                board[setOfCoordinates[0]][setOfCoordinates[1]].IsShip = true;
+            }
+        }
+
+        internal void UpdateShipSafeZoneOnBoard(Ship newShip)
+        {
+            foreach (int[] setOfCoordinates in newShip.SafeZoneCoordinates)
+            {
+                if (!(setOfCoordinates[0] < 0 || setOfCoordinates[0] > 9 || setOfCoordinates[1] < 0 || setOfCoordinates[1] > 9))
+                {
+                   board[setOfCoordinates[0]][setOfCoordinates[1]].IsTooClose = true;
+                }
+            }
+        }
     }
 }

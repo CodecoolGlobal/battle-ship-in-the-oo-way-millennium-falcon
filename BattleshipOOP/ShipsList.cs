@@ -58,8 +58,8 @@ namespace BattleshipOOP
                     newShip.SafeZoneCoordinates = UI.GetSafeZoneCoordinates(newShip); 
                     Ships.Add(newShip);
 
-                    Square.UpdateShipSquaresOnBoard(board, newShip);
-                    Square.UpdateShipSafeZoneOnBoard(board, newShip);
+                    board.UpdateShipSquaresOnBoard(newShip);
+                    board.UpdateShipSafeZoneOnBoard(newShip);
                 }
             }
         }
@@ -88,11 +88,10 @@ namespace BattleshipOOP
                     newShip.SafeZoneCoordinates = UI.GetSafeZoneCoordinates(newShip);
                     Ships.Add(newShip);
 
-                    Square.UpdateShipSquaresOnBoard(board, newShip);
-                    Square.UpdateShipSafeZoneOnBoard(board, newShip);
+                    board.UpdateShipSquaresOnBoard(newShip);
+                    board.UpdateShipSafeZoneOnBoard(newShip);
                 }
             }
         }
-
     }
 }
