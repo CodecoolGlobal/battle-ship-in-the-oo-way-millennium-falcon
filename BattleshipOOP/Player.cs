@@ -50,5 +50,6 @@ namespace BattleshipOOP
         {
             Board.PrintBoard(IsActivePlayer);
         }
+
     }
 }

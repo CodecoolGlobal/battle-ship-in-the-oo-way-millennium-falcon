@@ -9,8 +9,8 @@ namespace BattleshipOOP
             Console.Clear();
             Game StarWars = new Game();
             StarWars.PopulateAllShips();
-            UI.StartGameCountDown(Console.CursorLeft, Console.CursorTop);
             StarWars.PrintBothBoards();
+            UI.StartGameCountDown(Console.CursorLeft, Console.CursorTop);
             StarWars.HandleActions();
 
 

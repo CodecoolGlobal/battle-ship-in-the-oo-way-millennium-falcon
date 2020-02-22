@@ -222,15 +222,20 @@ namespace BattleshipOOP
         public static void StartGameCountDown(int positionX, int positionY)
         {
             int counter = 3;
+            string countMessage = "Good luck! The Game will start in {0} ";
+            string emptyMessage = new string (' ', countMessage.Length);
+
             for (int a = counter; a > 0; a--)
             {
                 Console.SetCursorPosition(positionX, positionY);
-                Console.Write("\nGood luck! The Game will start in {0} ", a);  // Override complete previous contents
-                // for (int b = a; b < counter + 1; b++){
-                //     Console.Write("\n.");
-                // }
+                Console.Write(countMessage, a);  // Override complete previous contents
                 System.Threading.Thread.Sleep(1000);
             }
+            
+            
+            Console.SetCursorPosition(positionX, positionY);
+            Console.Write(emptyMessage);  // Override complete previous contents
+            System.Threading.Thread.Sleep(1000);
         }
     }
 }

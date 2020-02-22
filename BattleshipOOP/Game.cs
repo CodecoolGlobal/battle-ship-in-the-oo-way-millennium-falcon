@@ -46,14 +46,21 @@ namespace BattleshipOOP
             Random random = new Random();
             int n = random.Next(0, 2);
             bool isPlayerTurn = (random.Next(0, 2) % 2 == 0) ? false: true;
+            bool correctCoordinates = false;
+     
+
+            Console.Clear();
+            UI.PrintMessage("This is opponent's board:");
+            AIOpponent.PrintBoard();
 
             while (!Player.IsLost && !AIOpponent.IsLost)
             {
+                correctCoordinates = false;
+
                 if (isPlayerTurn == true)
                 {
-                    UI.PrintMessage("Which field do you want to shoot?");
+                    UI.PrintMessage("\nWhich field do you want to shoot?");
 
-                    bool correctCoordinates = false;
                     while (!correctCoordinates)
                     {
                         int[] coordinates = UI.GetPairCoordinates();
@@ -68,11 +75,32 @@ namespace BattleshipOOP
                 else
                 {
                     // Game.AITurn();
-                    UI.PrintMessage("AI shoot!");
-                    isPlayerTurn = true;
+
+                    while (!correctCoordinates)
+                    {
+                        int[] coordinates = Game.GetAICoordinates();
+                        UI.PrintMessage("\nAI shoot!");
+                        correctCoordinates = Player.HandleShooting(coordinates);
+                        Player.PrintBoard();
+                        isPlayerTurn = true;
+                    }
                 }
 
             }
+        }
+
+        public static int[] GetAICoordinates()
+        {
+            int[] AIcoordinates = new int[2];
+            Random random = new Random();
+            int x = random.Next(0, 10);
+            int y = random.Next(0, 10);
+
+            AIcoordinates[0] = x;
+            AIcoordinates[1] = y;
+            UI.PrintMessage($"X: {x} \nY: {y}");
+
+            return AIcoordinates;
         }
     }
 }
