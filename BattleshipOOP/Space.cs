@@ -28,8 +28,8 @@ namespace BattleshipOOP
 
         private void PrintTopLines()
         {
-            Console.WriteLine(topLine);
-            Console.WriteLine(separatorLine);
+            UI.PrintMessage(topLine);
+            UI.PrintMessage(separatorLine);
         }
 
 
@@ -64,8 +64,8 @@ namespace BattleshipOOP
                     }
                     
                 }
-                Console.WriteLine(rowToPrint);
-                Console.WriteLine(separatorLine);
+                UI.PrintMessage(rowToPrint);
+                UI.PrintMessage(separatorLine);
                 rowNumber++;
             }  
         }
@@ -82,23 +82,22 @@ namespace BattleshipOOP
 
             if (square.IsHit)
             {
-                Console.WriteLine("You have shot this field already!");
+                UI.PrintMessage("You have shot this field already!");
             }
-            else if (square.IsShip)
+            else 
             {
-                Console.WriteLine("You hit a ship!");
+                if (square.IsShip)
+                {
+                    UI.PrintMessage("You hit a ship!");
+                }
+                else
+                {
+                    UI.PrintMessage("You hit nothing!");
+                }
                 square.IsHit = true;
                 square.updateVisualRepresentation();
                 isCorrect = true;
             }
-            else
-            {
-                Console.WriteLine("You hit nothing!");
-                square.IsHit = true;
-                square.updateVisualRepresentation();
-                isCorrect = true;
-            }
-
             return isCorrect;
         }
 

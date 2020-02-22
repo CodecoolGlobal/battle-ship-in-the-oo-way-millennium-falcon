@@ -12,19 +12,17 @@ namespace BattleshipOOP
 
         public Game()
         {
-            UI.PrintWelcomeMessage();
+            UI.PrintMessage(UI.welcomeMessage);
             Player = new Player(UI.AskName(), UI.AskIfRebellion(), true);
             AIOpponent = new Player("AI", !Player.IsRebellion, false);
-            // UI.StartGameCountDown(Console.CursorLeft, Console.CursorTop);
-            
         }
         
         public void PrintBothBoards()
         {
             Console.Clear();
-            Console.WriteLine("This is your board:\n");
+            UI.PrintMessage("This is your board:\n");
             Player.PrintBoard();
-            Console.WriteLine("\nThis is oponent's board:\n");
+            UI.PrintMessage("\nThis is oponent's board:\n");
             AIOpponent.PrintBoard();
 
         }
@@ -45,19 +43,35 @@ namespace BattleshipOOP
 
         public void HandleActions()
         {
+            Random random = new Random();
+            int n = random.Next(0, 2);
+            bool isPlayerTurn = (random.Next(0, 2) % 2 == 0) ? false: true;
+
             while (!Player.IsLost && !AIOpponent.IsLost)
             {
-                Console.WriteLine("Which field do you want to shoot?");
-
-                bool correctCoordinates = false;
-                while (!correctCoordinates)
+                if (isPlayerTurn == true)
                 {
-                    int[] cooridnates = UI.GetPairCoordinates();
-                    Console.Clear();
-                    correctCoordinates = AIOpponent.HandleShooting(cooridnates);
-                    AIOpponent.PrintBoard();
+                    UI.PrintMessage("Which field do you want to shoot?");
 
+                    bool correctCoordinates = false;
+                    while (!correctCoordinates)
+                    {
+                        int[] coordinates = UI.GetPairCoordinates();
+                        Console.Clear();
+                        correctCoordinates = AIOpponent.HandleShooting(coordinates);
+
+                        AIOpponent.PrintBoard();
+
+                    }
+                    isPlayerTurn = false;
+                } 
+                else
+                {
+                    // Game.AITurn();
+                    UI.PrintMessage("AI shoot!");
+                    isPlayerTurn = true;
                 }
+
             }
         }
     }

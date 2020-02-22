@@ -6,7 +6,7 @@ namespace BattleshipOOP
     class Ship
     {
         public string Type { get; set; }
-        public int Lenght { get; set; }
+        public int Size { get; set; }
         public bool IsHorizontal { get; set; }
         public bool IsAlive { get; set; }
 
@@ -22,17 +22,17 @@ namespace BattleshipOOP
         public Ship(string type, bool ishorizontal)
         {
             Type = type;
-            Lenght = GetShipLength(type);
+            Size = GetShipLength(type);
             IsHorizontal = ishorizontal;
             IsAlive = true;
         }
 
         public void HitShip()
         {
-            Console.WriteLine(Lenght);
-            if (--Lenght == 0)
+            UI.PrintMessage(Size.ToString());
+            if (--Size == 0)
             {
-                Console.WriteLine("The ship has sunk");
+                UI.PrintMessage("The ship has sunk");
                 IsAlive = false;
             }
         }

@@ -22,7 +22,7 @@ namespace BattleshipOOP
         public static bool IsThereAShip(Space space, Ship ship, int[] coordinates)
         {
             bool isThereAShip = false;
-            for (int i = 0; i < ship.Lenght; i++)
+            for (int i = 0; i < ship.Size; i++)
             {
                 try
                 {

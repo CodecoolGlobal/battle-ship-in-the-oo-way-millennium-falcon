@@ -5,6 +5,7 @@ namespace BattleshipOOP
 {
     static class UI
     {
+        public static string welcomeMessage = "Welcome to the Galaxy Battle Ship!";
         private static Dictionary<int, string> numerals = new Dictionary<int, string>()
         {
             {0, "first" },
@@ -13,22 +14,21 @@ namespace BattleshipOOP
             {3, "fourth" }
         };
 
-        public static void PrintWelcomeMessage()
+        public static void PrintMessage(string myMessage)
         {
-            string welcomeMessage = "Welcome to the Galaxy Battle Ship!";
-            Console.WriteLine(welcomeMessage);
+            Console.WriteLine(myMessage);
         }
 
         public static bool AskIfAutomaticFill()
         {
-            Console.WriteLine("Do you want to fill your board automatically? (y/n)");
+            UI.PrintMessage("\nDo you want to fill your board automatically? (y/n)");
             string answer = "";
             while (answer != "y" && answer != "n")
             {
                 answer = Console.ReadLine().ToLower();
                 if (answer != "y" && answer != "n")
                 {
-                    Console.WriteLine("Wrong answer");
+                    UI.PrintMessage("Wrong answer");
                 }
 
             }
@@ -41,15 +41,15 @@ namespace BattleshipOOP
         public static string AskName()
         {
             string nameAnswer = "";
-            string nameQuestion = "What is your name, challenger?";
+            string nameQuestion = "\nWhat is your name, challenger?";
             string feedback;
             string notCorrectAnswerFeedback = "Ooops! It looks like you have not provided any answer. Try again!";
             while (!CheckName(nameAnswer))
             {
-                Console.WriteLine(nameQuestion);
+                UI.PrintMessage(nameQuestion);
                 nameAnswer = Console.ReadLine();
                 feedback = (!CheckName(nameAnswer)) ? notCorrectAnswerFeedback : $"Welcome captain {nameAnswer}!";
-                Console.WriteLine(feedback);
+                UI.PrintMessage(feedback);
             }
 
             return nameAnswer;
@@ -67,23 +67,23 @@ namespace BattleshipOOP
             bool correctAnswer = false;
             while (!correctAnswer)
             {
-                Console.WriteLine("Do you want to play Rebellion (r) or Empire (e)?");
+                UI.PrintMessage("\nDo you want to play Rebellion (r) or Empire (e)?");
                 answer = Console.ReadLine().ToLower();
                 if (answer == "r")
                 {
                     isRebellion = true;
                     correctAnswer = true;
-                    Console.WriteLine("Yay! You play the Rebellion! You are breathtaking!\n");
+                    UI.PrintMessage("Yay! You play the Rebellion! You are breathtaking!");
                 }
                 else if (answer == "e")
                 {
                     isRebellion = false;
                     correctAnswer = true;
-                    Console.WriteLine("Seriously? You play the Empire. You will lose anyway...\n");
+                    UI.PrintMessage("Seriously? You play the Empire. You will lose anyway...");
                 }
                 else
                 {
-                    Console.WriteLine("Wrong answer! You have to pick a \"light\"-(r) or \"dark\"-(e) side.");
+                    UI.PrintMessage("Wrong answer! You have to pick a \"light\"-(r) or \"dark\"-(e) side.");
                 }
             }
             return isRebellion;
@@ -96,7 +96,7 @@ namespace BattleshipOOP
             bool correctAnswer = false;
             while (!correctAnswer)
             {
-                Console.WriteLine($"Do you want to place {numerals[i]} \"{shipType}\" horizontally? (y/n)");
+                UI.PrintMessage($"Do you want to place {numerals[i]} \"{shipType}\" horizontally? (y/n)");
                 answer = Console.ReadLine().ToLower();
                 if (answer == "y")
                 {
@@ -110,7 +110,7 @@ namespace BattleshipOOP
                 }
                 else
                 {
-                    Console.WriteLine("Wrong answer! You have to pick yes-(y) or no-(n).");
+                    UI.PrintMessage("Wrong answer! You have to pick yes-(y) or no-(n).");
                 }
             }
             return isHorizontal;
@@ -131,19 +131,19 @@ namespace BattleshipOOP
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("Wrong coordinates format. First enter column letter, than row number. For example \"a1\".");
+                    UI.PrintMessage("Wrong coordinates format. First enter column letter, than row number. For example \"a1\".");
                     continue;
                 }
                 catch (ArgumentException error)
                 {
-                    Console.WriteLine(error.Message);
+                    UI.PrintMessage(error.Message);
                     continue;
                 }
 
                 if (Validation.isAnswerValid(coordinates))
                     correctAnswer = true;
                 else
-                    Console.WriteLine("You are out of range!");
+                    UI.PrintMessage("You are out of range!");
  
             }
             return coordinates;
@@ -156,7 +156,7 @@ namespace BattleshipOOP
             bool correctAnswer = false;
             while (!correctAnswer)
             {
-                Console.WriteLine($"Where do you want to place your {numerals[i]} \"{ship.Type}\"?");
+                UI.PrintMessage($"Where do you want to place your {numerals[i]} \"{ship.Type}\"?");
                 coordinates = GetPairCoordinates();
 
              
@@ -166,7 +166,7 @@ namespace BattleshipOOP
                 }
                 else
                 {
-                    Console.WriteLine("Please enter valid coordinates. You are too close!");
+                    UI.PrintMessage("Please enter valid coordinates. You are too close!");
                 }
             }
             return GetFullShipCoordinates(ship, coordinates);
@@ -175,7 +175,7 @@ namespace BattleshipOOP
         public static List<int[]> GetFullShipCoordinates(Ship ship, int[] headCoordinates)
         {
             List<int[]> fullCoordinatesList = new List<int[]>();
-            for (int i = 0; i < ship.Lenght; i++)
+            for (int i = 0; i < ship.Size; i++)
             {
                 int[] shipSegment = new int[2];
                 if(ship.IsHorizontal)
@@ -225,7 +225,7 @@ namespace BattleshipOOP
             for (int a = counter; a > 0; a--)
             {
                 Console.SetCursorPosition(positionX, positionY);
-                Console.Write("Good luck! The Game will start in {0} ", a);  // Override complete previous contents
+                Console.Write("\nGood luck! The Game will start in {0} ", a);  // Override complete previous contents
                 // for (int b = a; b < counter + 1; b++){
                 //     Console.Write("\n.");
                 // }
