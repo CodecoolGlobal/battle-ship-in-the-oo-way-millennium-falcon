@@ -12,6 +12,7 @@ namespace BattleshipOOP
         public Space Board { get; set; }
         private bool IsActivePlayer { get; set; }
         public bool IsLost { get; set; }
+        // private int[] last_hit { get; set; }
 
         public Player(string name, bool isRebellion, bool isActivePlayer)
         {
@@ -23,13 +24,15 @@ namespace BattleshipOOP
             IsLost = false;
         }
 
-        public bool HandleShooting(int[] coordinates)
+        public bool[] HandleShooting(int[] coordinates)
         {
-            bool correctShot = Board.HandleShotOnSquare(coordinates);
+            bool[] correctShot = new bool[2];
+            correctShot[0] = Board.HandleShotOnSquare(coordinates);
 
-            if (Board.CheckIfShip(coordinates) && correctShot)
+            if (Board.CheckIfShip(coordinates) && correctShot[0])
             {
                 PlayerShips.HitShip(coordinates);
+                correctShot[1] = true;
             }
 
             return correctShot;
@@ -49,6 +52,22 @@ namespace BattleshipOOP
         public void PrintBoard()
         {
             Board.PrintBoard(IsActivePlayer);
+        }
+
+        public static int[] GetAICoordinates()
+        {
+            int minBoardCoord = 0;
+            int maxBoardCoord = 10;
+            int[] AIcoordinates = new int[2];
+            Random random = new Random();
+            int x = random.Next(minBoardCoord, maxBoardCoord);
+            int y = random.Next(minBoardCoord, maxBoardCoord);
+
+            AIcoordinates[0] = x;
+            AIcoordinates[1] = y;
+            UI.PrintMessage($"X: {x} Y: {y}");
+
+            return AIcoordinates;
         }
 
     }
