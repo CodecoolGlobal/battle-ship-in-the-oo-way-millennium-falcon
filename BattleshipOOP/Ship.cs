@@ -32,7 +32,7 @@ namespace BattleshipOOP
             UI.PrintMessage(Size.ToString());
             if (--Size == 0)
             {
-                UI.PrintMessage("The ship has sunk");
+                UI.PrintMessage($"Ship {Type} has sunk");
                 IsAlive = false;
             }
         }

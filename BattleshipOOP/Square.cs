@@ -11,21 +11,22 @@ namespace BattleshipOOP
         public bool IsTooClose { get; set; }
 
         public string visualRepresentation;
-        public string hitShipMark = " X |";
-        public string hitEmptyMark = " + |";
-        public string notHitShipMark = " # |";
-        public string notHitEmptyMark = "   |";
 
         public Square()
         {
             IsShip = false;
             IsHit = false;
             IsTooClose = false;
-            visualRepresentation = notHitEmptyMark;
+            updateVisualRepresentation();
         }
 
         public void updateVisualRepresentation()
         {
+            string hitShipMark = " X |";
+            string hitEmptyMark = " + |";
+            string notHitShipMark = " # |";
+            string notHitEmptyMark = "   |";
+
             if (IsHit && IsShip)
             {
                 visualRepresentation = hitShipMark;
