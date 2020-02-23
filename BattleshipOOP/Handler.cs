@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace BattleshipOOP
 {
@@ -19,7 +19,7 @@ namespace BattleshipOOP
                         int[] safeCoordinate = new int[2];
                         safeCoordinate[0] = shipCoordinate[0] - 1 + i;
                         safeCoordinate[1] = shipCoordinate[1] - 1 + j;
-                        if (safeCoordinate[0] >= 0 && safeCoordinate[0] < 10 && safeCoordinate[1] >= 0 && safeCoordinate[1] < 10)
+                        if (safeCoordinate[0] >= 0 && safeCoordinate[0] < 10 && safeCoordinate[1] >= 0 && safeCoordinate[1] < 10 && !(safeZoneCoordinates.Any(x => x[0] == safeCoordinate[0] && x[1] == safeCoordinate[1])))
                             safeZoneCoordinates.Add(safeCoordinate);
                     }
                 }

@@ -44,11 +44,6 @@ namespace BattleshipOOP
             {
                 UI.PrintTwoBoards(Player, AIOpponent);
                 UI.PrintComments();
-                foreach (var element in Player.alreadySelected)
-                {
-                    Console.WriteLine($"{element[0]}, {element[1]}");
-                }
-
                 UI.PrintMessage("\nWhich field do you want to shoot?");
 
                 bool correctCoordinates = false;

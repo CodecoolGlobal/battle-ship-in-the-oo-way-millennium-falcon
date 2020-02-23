@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace BattleshipOOP
 {
@@ -48,7 +48,8 @@ namespace BattleshipOOP
                 foreach (int[] zoneCoordinates in ship.SafeZoneCoordinates) 
                 {
                     Board.board[zoneCoordinates[0]][zoneCoordinates[1]].IsHit = true;
-                    alreadySelected.Add(zoneCoordinates);
+                    if (!(alreadySelected.Any(x => x[0] == zoneCoordinates[0] && x[1] == zoneCoordinates[1])))
+                        alreadySelected.Add(zoneCoordinates);
                 }
             }
         }
