@@ -43,54 +43,48 @@ namespace BattleshipOOP
 
         public void HandleActions()
         {
-            int[] coordinates = new int[2];
-            bool[] correctCoordinates = new bool[2];
-            int isCorrectIndex = 0;
-            int isShipIndex = 1;
-            
-            Random random = new Random();
-            int n = random.Next(0, 2);
-            bool isPlayerTurn = (random.Next(0, 2) % 2 == 0) ? false: true;
-            
-
-            Console.Clear();
-            UI.PrintMessage("This is opponent's board:");
-            AIOpponent.PrintBoard();
-
             while (!Player.IsLost && !AIOpponent.IsLost)
             {
-                correctCoordinates[isCorrectIndex] = false;
+                Console.WriteLine("Which field do you want to shoot?");
 
-                if (isPlayerTurn == true)
+                bool correctCoordinates = false;
+                bool isShip = true;
+                int[] cooridnates;
+
+                while (!correctCoordinates && isShip && !AIOpponent.IsLost)
                 {
-                    UI.PrintMessage("\nWhich field do you want to shoot?");
-
-                    while (!correctCoordinates[isCorrectIndex])
+                    cooridnates = UI.GetPairCoordinates();
+                    correctCoordinates = AIOpponent.HandleShooting(cooridnates);
+                    if (correctCoordinates)
                     {
-                        coordinates = UI.GetPairCoordinates();
-                        Console.Clear();
-                        bool[] response = AIOpponent.HandleShooting(coordinates);
-                        correctCoordinates[isCorrectIndex] = response[isCorrectIndex];
-                        AIOpponent.PrintBoard();
+                        isShip = AIOpponent.Board.CheckIfShip(cooridnates);
+                        correctCoordinates = false;
+                        AIOpponent.CheckIfLost();
 
-                        isPlayerTurn = response[isShipIndex];
-                    }
-                } 
-                else
-                {
-                    UI.PrintMessage("\nAI turn:");
+                    } 
 
-                    while (!correctCoordinates[isCorrectIndex])
-                    {
-                        
-                        coordinates = Player.GetAICoordinates();
-                        bool[] response = Player.HandleShooting(coordinates);
-                        correctCoordinates[isCorrectIndex] = response[isCorrectIndex];
-                        Player.PrintBoard();
-                        isPlayerTurn = !(response[isShipIndex]);
-                    }
+                    AIOpponent.PrintBoard();
+
                 }
 
+                isShip = true;
+                correctCoordinates = false;
+
+                while (!correctCoordinates && isShip && !AIOpponent.IsLost && !Player.IsLost)
+                {
+                    cooridnates = Handler.GetAICoordinates();
+                    correctCoordinates = Player.HandleShooting(cooridnates);
+                    if (correctCoordinates)
+                    {
+                        isShip = Player.Board.CheckIfShip(cooridnates);
+                        correctCoordinates = false;
+                        Player.CheckIfLost();
+                    }
+                    Player.PrintBoard();
+
+
+
+                }
             }
         }
     }

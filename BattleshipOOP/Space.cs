@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BattleshipOOP
 {
@@ -21,13 +19,10 @@ namespace BattleshipOOP
             }
         }
 
-        private string separatorLine = "--------------------------------------------";
-        private string topLine = "   | a | b | c | d | e | f | g | h | i | j |";
-        private string shortSeparator = " |";
-        private string longSeparator = "  |";
-
         private void PrintTopLines()
         {
+            string separatorLine = "--------------------------------------------";
+            string topLine = "   | a | b | c | d | e | f | g | h | i | j |";
             UI.PrintMessage(topLine);
             UI.PrintMessage(separatorLine);
         }
@@ -35,6 +30,9 @@ namespace BattleshipOOP
 
         public void PrintBoard(bool isActivePlayer)
         {
+        string shortSeparator = " |";
+        string longSeparator = "  |";
+        string separatorLine = "--------------------------------------------";
 
             int rowNumber = 1;
             string rowToPrint;
@@ -88,11 +86,11 @@ namespace BattleshipOOP
             {
                 if (square.IsShip)
                 {
-                    UI.PrintMessage("You hit a ship!");
+                    UI.PrintMessage("A ship was hit!");
                 }
                 else
                 {
-                    UI.PrintMessage("You hit nothing!");
+                    UI.PrintMessage("Miss!");
                 }
                 square.IsHit = true;
                 square.updateVisualRepresentation();

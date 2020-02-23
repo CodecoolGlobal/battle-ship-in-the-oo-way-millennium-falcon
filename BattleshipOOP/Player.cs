@@ -24,21 +24,20 @@ namespace BattleshipOOP
             IsLost = false;
         }
 
-        public bool[] HandleShooting(int[] coordinates)
+        public bool HandleShooting(int[] coordinates)
         {
-            bool[] correctShot = new bool[2];
-            correctShot[0] = Board.HandleShotOnSquare(coordinates);
+            bool correctShot = Board.HandleShotOnSquare(coordinates);
 
-            if (Board.CheckIfShip(coordinates) && correctShot[0])
+            if (Board.CheckIfShip(coordinates) && correctShot)
             {
                 PlayerShips.HitShip(coordinates);
-                correctShot[1] = true;
             }
 
             return correctShot;
         }
 
- 
+
+
         public void PopulatePlayerShipList()
         {
             PlayerShips.PopulatePlayerShipsList(IsRebellion, Board);
@@ -54,21 +53,22 @@ namespace BattleshipOOP
             Board.PrintBoard(IsActivePlayer);
         }
 
-        public static int[] GetAICoordinates()
+        public bool CheckIfLost()
         {
-            int minBoardCoord = 0;
-            int maxBoardCoord = 9;
-            int[] AIcoordinates = new int[2];
-            Random random = new Random();
+            IsLost = true;
+            foreach (Ship ship in PlayerShips.Ships)
+            {
+                if (ship.IsAlive)
+                {
+                    IsLost = false;
+                    return IsLost;
 
-            AIcoordinates[0] = random.Next(minBoardCoord, maxBoardCoord);
-            AIcoordinates[1] = random.Next(minBoardCoord, maxBoardCoord);
-
-            char charRepresentation = Convert.ToChar(('A' + AIcoordinates[1]));
-            UI.PrintMessage($"Coordinates: {charRepresentation}{AIcoordinates[0]+1}");
-
-            return AIcoordinates;
+                }
+            }
+            return IsLost;
         }
+
+       
 
     }
 }
