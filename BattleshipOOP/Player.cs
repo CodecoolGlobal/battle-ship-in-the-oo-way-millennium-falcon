@@ -26,17 +26,20 @@ namespace BattleshipOOP
             alreadySelected = new List<int[]>();
         }
 
-        public bool HandleShooting(int[] coordinates)
+        public bool IsAlreadyUsed(int[] coordinates)
         {
-            bool correctShot = Board.HandleShotOnSquare(coordinates);
+            bool correctShot = Board.IsAlreadyUsed(coordinates);
+            return correctShot;
+        }
 
-            if (Board.CheckIfShip(coordinates) && correctShot)
+        public void HandleShooting(int[] coordinates)
+        {
+            Board.HandleShotOnSquare(coordinates);
+            if (Board.CheckIfShip(coordinates))
             {
                 PlayerShips.HitShip(coordinates);
                 UpdateZonesAfterDefeatingShip(coordinates);
             }
-
-            return correctShot;
         }
 
         public void UpdateZonesAfterDefeatingShip(int[] coordinates)

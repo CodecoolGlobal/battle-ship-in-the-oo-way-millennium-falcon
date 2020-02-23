@@ -24,7 +24,7 @@ namespace BattleshipOOP
             return board[coordinates[0]][coordinates[1]].IsShip;
         }
 
-        public bool HandleShotOnSquare(int[] coordinates)
+        public bool IsAlreadyUsed(int[] coordinates)
         {
             bool isCorrect = false;
             Square square = board[coordinates[0]][coordinates[1]];
@@ -33,22 +33,29 @@ namespace BattleshipOOP
             {
                 UI.PrintMessage("You have shot this field already!");
             }
-            else 
+            else
             {
-                if (square.IsShip)
-                {
-                    UI.AddComment("A ship was hit! Extra shoot!\n");
-                    // UI.PrintMessage("A ship was hit! You can shoot again :)");
-                }
-                else
-                {
-                    UI.AddComment("Miss!\n");
-                }
-                square.IsHit = true;
-                square.updateVisualRepresentation();
                 isCorrect = true;
             }
             return isCorrect;
+        }
+
+        public void HandleShotOnSquare(int[] coordinates)
+        {
+            Square square = board[coordinates[0]][coordinates[1]];
+            
+            if (square.IsShip)
+            {
+                UI.AddComment("A ship was hit! Extra shoot!\n");
+                // UI.PrintMessage("A ship was hit! You can shoot again :)");
+            }
+            else
+            {
+                UI.AddComment("Miss!\n");
+            }
+            square.IsHit = true;
+            square.updateVisualRepresentation();
+
         }
 
         internal void UpdateShipSquaresOnBoard(Ship newShip)

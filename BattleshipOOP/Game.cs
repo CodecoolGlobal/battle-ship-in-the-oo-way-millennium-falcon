@@ -54,15 +54,16 @@ namespace BattleshipOOP
                 while (!correctCoordinates && isShip && !AIOpponent.IsLost)
                 {
                     coordinates = UI.GetPairCoordinates();
-                    correctCoordinates = AIOpponent.HandleShooting(coordinates);
+                    correctCoordinates = AIOpponent.IsAlreadyUsed(coordinates);
                     if (correctCoordinates)
                     {
+                        AIOpponent.HandleShooting(coordinates);
                         isShip = AIOpponent.Board.CheckIfShip(coordinates);
                         correctCoordinates = false;
                         AIOpponent.CheckIfLost();
                         if (isShip)
                         {
-                            UI.PrintTwoBoards(Player, AIOpponent);
+                            UI.PrintTwoBoards(AIOpponent, AIOpponent);
                             UI.PrintComments();
                         }
                     } 
@@ -81,9 +82,10 @@ namespace BattleshipOOP
                     charRepresentation = Convert.ToChar(('A' + coordinates[1]));
                     UI.AddComment($"\nAI shoots at: {charRepresentation}{coordinates[0] + 1}\n");
                     Player.alreadySelected.Add(coordinates);
-                    correctCoordinates = Player.HandleShooting(coordinates);
+                    correctCoordinates = Player.IsAlreadyUsed(coordinates);
                     if (correctCoordinates)
                     {
+                        Player.HandleShooting(coordinates);
                         isShip = Player.Board.CheckIfShip(coordinates);
                         correctCoordinates = false;
                         Player.CheckIfLost();
