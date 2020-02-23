@@ -10,7 +10,7 @@ namespace BattleshipOOP
         public bool IsRebellion { get; set; }
         public ShipsList PlayerShips { get; set; }
         public Space Board { get; set; }
-        private bool IsActivePlayer { get; set; }
+        public bool IsActivePlayer { get; set; }
         public bool IsLost { get; set; }
         // private int[] last_hit { get; set; }
 
@@ -66,6 +66,8 @@ namespace BattleshipOOP
         {
             Board.PrintBoard(IsActivePlayer);
         }
+
+    // #TODO
 
         public bool CheckIfLost()
         {

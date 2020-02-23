@@ -19,6 +19,8 @@ namespace BattleshipOOP
             Console.WriteLine(myMessage);
         }
 
+
+
         public static void AskForPlacement(Ship ship, int i)
         {
             PrintMessage($"Where do you want to place your {numerals[i]} \"{ship.Type}\"?");
@@ -28,7 +30,7 @@ namespace BattleshipOOP
         public static bool AskIfAutomaticFill()
         {
             PrintMessage("\nDo you want to fill your board automatically? (y/n)");
-            string answer = "";
+            string answer = "y";
             while (!Validation.CheckIfYesOrNo(answer))
             {
                 answer = Console.ReadLine().ToLower();
@@ -36,12 +38,8 @@ namespace BattleshipOOP
                 {
                     PrintMessage("Wrong answer");
                 }
-
             }
-
             return (answer == "y");
-
-
         }
 
 
@@ -53,12 +51,12 @@ namespace BattleshipOOP
             string notCorrectAnswerFeedback = "Ooops! It looks like you have not provided any answer. Try again!";
             while (!Validation.CheckName(nameAnswer))
             {
-                PrintMessage(nameQuestion);
-                nameAnswer = Console.ReadLine();
+                UI.PrintMessage(nameQuestion);
+                //nameAnswer = Console.ReadLine();
+                nameAnswer = "AAA";
                 feedback = (!Validation.CheckName(nameAnswer)) ? notCorrectAnswerFeedback : $"Welcome captain {nameAnswer}!";
-                PrintMessage(feedback);
+                UI.PrintMessage(feedback);
             }
-
             return nameAnswer;
         }
 
@@ -70,7 +68,8 @@ namespace BattleshipOOP
             while (!correctAnswer)
             {
                 UI.PrintMessage("\nDo you want to play Rebellion (r) or Empire (e)?");
-                answer = Console.ReadLine().ToLower();
+                // answer = Console.ReadLine().ToLower();
+                answer = "r";
                 if (answer == "r")
                 {
                     isRebellion = true;
@@ -165,7 +164,6 @@ namespace BattleshipOOP
                 Console.Write(countMessage, a);  // Override complete previous contents
                 System.Threading.Thread.Sleep(1000);
             }
-            
             
             Console.SetCursorPosition(positionX, positionY);
             Console.Write(emptyMessage);  // Override complete previous contents

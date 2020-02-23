@@ -20,10 +20,9 @@ namespace BattleshipOOP
         public void PrintBothBoards()
         {
             Console.Clear();
-            UI.PrintMessage("This is your board:\n");
-            Player.PrintBoard();
-            UI.PrintMessage("\nThis is oponent's board:\n");
-            AIOpponent.PrintBoard();
+            // UI.PrintMessage("This is your board:\n");
+            Space.PrintTwoBoards(Player, AIOpponent);
+            // UI.PrintMessage("\nThis is oponent's board:\n");
 
         }
 
@@ -45,7 +44,7 @@ namespace BattleshipOOP
         {
             while (!Player.IsLost && !AIOpponent.IsLost)
             {
-                Console.WriteLine("Which field do you want to shoot?");
+                Console.WriteLine("\nWhich field do you want to shoot?");
 
                 bool correctCoordinates = false;
                 bool isShip = true;
