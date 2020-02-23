@@ -8,18 +8,83 @@ namespace BattleshipOOP
     {
         public static int[] GetAICoordinates()
         {
-            int minBoardCoord = 0;
-            int maxBoardCoord = 9;
-            int[] AIcoordinates = new int[2];
-            Random random = new Random();
 
-            AIcoordinates[0] = random.Next(minBoardCoord, maxBoardCoord);
-            AIcoordinates[1] = random.Next(minBoardCoord, maxBoardCoord);
-
+            int[] AIcoordinates = GetRandomCoordinates();
             char charRepresentation = Convert.ToChar(('A' + AIcoordinates[1]));
-            UI.PrintMessage($"Coordinates: {charRepresentation}{AIcoordinates[0] + 1}");
-
+            UI.PrintMessage($"AI shoots at: {charRepresentation}{AIcoordinates[0] + 1}");
             return AIcoordinates;
         }
+
+        public static List<int[]> GetSafeZoneCoordinates(Ship newShip)
+        {
+            List<int[]> safeZoneCoordinates = new List<int[]>();
+            foreach (var shipCoordinate in newShip.FullCoordinates)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        int[] safeCoordinate = new int[2];
+                        safeCoordinate[0] = shipCoordinate[0] - 1 + i;
+                        safeCoordinate[1] = shipCoordinate[1] - 1 + j;
+                        safeZoneCoordinates.Add(safeCoordinate);
+                    }
+                }
+            }
+            return safeZoneCoordinates;
+        }
+
+        public static int[] GetRandomCoordinates()
+        {
+            Random rand = new Random();
+            int[] randomHeadCoordiantes = { rand.Next(10), rand.Next(10) };
+            return randomHeadCoordiantes;
+        }
+
+        public static List<int[]> GetFullShipCoordinates(Ship ship, int[] headCoordinates)
+        {
+            List<int[]> fullCoordinatesList = new List<int[]>();
+            for (int i = 0; i < ship.Size; i++)
+            {
+                int[] shipSegment = new int[2];
+                if (ship.IsHorizontal)
+                {
+                    shipSegment[0] = headCoordinates[0];
+                    shipSegment[1] = headCoordinates[1] + i;
+                }
+                else
+                {
+                    shipSegment[0] = headCoordinates[0] + i;
+                    shipSegment[1] = headCoordinates[1];
+                }
+                fullCoordinatesList.Add(shipSegment);
+            }
+            return fullCoordinatesList;
+        }
+
+        public static List<int[]> GetFullCoordinatesFromShipHead(Ship ship, Space space, int i)
+        {
+            int[] coordinates = { -1, -1 };
+
+            bool correctAnswer = false;
+            while (!correctAnswer)
+            {
+                UI.AskForPlacement(ship, i);
+                coordinates = UI.GetPairCoordinates();
+
+
+                if (Validation.IsAnswerValid(coordinates) && !Validation.IsThereAShip(space, ship, coordinates))
+                {
+                    correctAnswer = true;
+                }
+                else
+                {
+                    UI.PrintMessage("Please enter valid coordinates. You are too close!");
+                }
+            }
+            return Handler.GetFullShipCoordinates(ship, coordinates);
+        }
     }
+
+
 }

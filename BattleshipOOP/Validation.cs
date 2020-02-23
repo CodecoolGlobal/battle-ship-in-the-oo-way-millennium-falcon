@@ -19,6 +19,19 @@ namespace BattleshipOOP
             return index;
         }
 
+        public static bool CheckName(string name)
+        {
+            return (name.Length > 0);
+        }
+
+        static public bool CheckIfYesOrNo(string answer)
+        {
+            answer = answer.ToLower();
+            return (answer == "y" || answer == "n");
+
+        }
+
+
         public static bool IsThereAShip(Space space, Ship ship, int[] coordinates)
         {
             bool isThereAShip = false;

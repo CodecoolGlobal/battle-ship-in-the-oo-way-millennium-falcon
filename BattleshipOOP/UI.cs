@@ -19,21 +19,28 @@ namespace BattleshipOOP
             Console.WriteLine(myMessage);
         }
 
+        public static void AskForPlacement(Ship ship, int i)
+        {
+            PrintMessage($"Where do you want to place your {numerals[i]} \"{ship.Type}\"?");
+        }
+
+
         public static bool AskIfAutomaticFill()
         {
-            UI.PrintMessage("\nDo you want to fill your board automatically? (y/n)");
+            PrintMessage("\nDo you want to fill your board automatically? (y/n)");
             string answer = "";
-            while (answer != "y" && answer != "n")
+            while (!Validation.CheckIfYesOrNo(answer))
             {
                 answer = Console.ReadLine().ToLower();
-                if (answer != "y" && answer != "n")
+                if (!Validation.CheckIfYesOrNo(answer))
                 {
-                    UI.PrintMessage("Wrong answer");
+                    PrintMessage("Wrong answer");
                 }
 
             }
 
             return (answer == "y");
+
 
         }
 
@@ -44,20 +51,15 @@ namespace BattleshipOOP
             string nameQuestion = "\nWhat is your name, challenger?";
             string feedback;
             string notCorrectAnswerFeedback = "Ooops! It looks like you have not provided any answer. Try again!";
-            while (!CheckName(nameAnswer))
+            while (!Validation.CheckName(nameAnswer))
             {
-                UI.PrintMessage(nameQuestion);
+                PrintMessage(nameQuestion);
                 nameAnswer = Console.ReadLine();
-                feedback = (!CheckName(nameAnswer)) ? notCorrectAnswerFeedback : $"Welcome captain {nameAnswer}!";
-                UI.PrintMessage(feedback);
+                feedback = (!Validation.CheckName(nameAnswer)) ? notCorrectAnswerFeedback : $"Welcome captain {nameAnswer}!";
+                PrintMessage(feedback);
             }
 
             return nameAnswer;
-        }
-
-        public static bool CheckName(string name)
-        {
-            return (name.Length > 0 ? true : false);
         }
 
         public static bool AskIfRebellion()
@@ -149,75 +151,7 @@ namespace BattleshipOOP
             return coordinates;
         }
 
-        public static List<int[]> GetFullCoordinatesFromShipHead(Ship ship, Space space, int i)
-        {
-            int[] coordinates = { -1, -1 };
 
-            bool correctAnswer = false;
-            while (!correctAnswer)
-            {
-                UI.PrintMessage($"Where do you want to place your {numerals[i]} \"{ship.Type}\"?");
-                coordinates = GetPairCoordinates();
-
-             
-                if (Validation.IsAnswerValid(coordinates) && !Validation.IsThereAShip(space, ship, coordinates))
-                {
-                    correctAnswer = true;
-                }
-                else
-                {
-                    UI.PrintMessage("Please enter valid coordinates. You are too close!");
-                }
-            }
-            return GetFullShipCoordinates(ship, coordinates);
-        }
-
-        public static List<int[]> GetFullShipCoordinates(Ship ship, int[] headCoordinates)
-        {
-            List<int[]> fullCoordinatesList = new List<int[]>();
-            for (int i = 0; i < ship.Size; i++)
-            {
-                int[] shipSegment = new int[2];
-                if(ship.IsHorizontal)
-                {
-                    shipSegment[0] = headCoordinates[0];
-                    shipSegment[1] = headCoordinates[1] + i;
-                }
-                else
-                {
-                    shipSegment[0] = headCoordinates[0] + i;
-                    shipSegment[1] = headCoordinates[1];
-                }
-                fullCoordinatesList.Add(shipSegment);
-            }
-            return fullCoordinatesList;
-        }
-
-        public static int[] RandomShipHeadCoordinates()
-        {
-            Random rand = new Random();
-            int[] randomHeadCoordiantes = {rand.Next(10), rand.Next(10)};
-            return randomHeadCoordiantes;
-        }
-
-        internal static List<int[]> GetSafeZoneCoordinates(Ship newShip)
-        {
-            List<int[]> safeZoneCoordinates = new List<int[]>();
-            foreach (var shipCoordinate in newShip.FullCoordinates)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    for (int j = 0; j < 3; j++)
-                    {
-                        int[] safeCoordinate = new int[2];
-                        safeCoordinate[0] = shipCoordinate[0] - 1 + i;
-                        safeCoordinate[1] = shipCoordinate[1] - 1 + j;
-                        safeZoneCoordinates.Add(safeCoordinate);
-                    }
-                }  
-            }
-            return safeZoneCoordinates;
-        }
 
         public static void StartGameCountDown(int positionX, int positionY)
         {

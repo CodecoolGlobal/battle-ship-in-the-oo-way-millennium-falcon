@@ -55,7 +55,7 @@ namespace BattleshipOOP
                         new Ship(ship.Key) : new Ship(ship.Key, UI.GetShipAlignment(ship.Key, i));
 
                     newShip.FullCoordinates = UI.GetFullCoordinatesFromShipHead(newShip, board, i);
-                    newShip.SafeZoneCoordinates = UI.GetSafeZoneCoordinates(newShip); 
+                    newShip.SafeZoneCoordinates = Handler.GetSafeZoneCoordinates(newShip); 
                     Ships.Add(newShip);
 
                     board.UpdateShipSquaresOnBoard(newShip);
@@ -78,14 +78,14 @@ namespace BattleshipOOP
                     bool correctRandomHeadCoordiantes = false;
                     while (!correctRandomHeadCoordiantes)
                     {
-                        randomHeadCoordinates = UI.RandomShipHeadCoordinates();
+                        randomHeadCoordinates = Handler.GetRandomCoordinates();
                         if (!Validation.IsThereAShip(board, newShip, randomHeadCoordinates))
                         {
                             correctRandomHeadCoordiantes = true;
                         }
                     }
-                    newShip.FullCoordinates = UI.GetFullShipCoordinates(newShip, randomHeadCoordinates);
-                    newShip.SafeZoneCoordinates = UI.GetSafeZoneCoordinates(newShip);
+                    newShip.FullCoordinates = Handler.GetFullShipCoordinates(newShip, randomHeadCoordinates);
+                    newShip.SafeZoneCoordinates = Handler.GetSafeZoneCoordinates(newShip);
                     Ships.Add(newShip);
 
                     board.UpdateShipSquaresOnBoard(newShip);
