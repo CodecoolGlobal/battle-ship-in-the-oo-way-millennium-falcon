@@ -20,10 +20,7 @@ namespace BattleshipOOP
         public void PrintBothBoards()
         {
             Console.Clear();
-            // UI.PrintMessage("This is your board:\n");
-            Space.PrintTwoBoards(Player, AIOpponent);
-            // UI.PrintMessage("\nThis is oponent's board:\n");
-
+            UI.PrintTwoBoards(Player, AIOpponent);
         }
 
         public void PopulateAllShips()

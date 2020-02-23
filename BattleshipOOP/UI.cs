@@ -6,6 +6,13 @@ namespace BattleshipOOP
     static class UI
     {
         public static string welcomeMessage = "Welcome to the Galaxy Battle Ship!";
+// After Board remove, can be private
+        public static string shortSeparator = " |";
+        public static string longSeparator = "  |";
+        public static string separatorLine = "--------------------------------------------";
+        public static string topLine = "   | a | b | c | d | e | f | g | h | i | j |";
+        public static string notHitShipMark = " # |";
+        public static string notHitEmptyMark = "   |";
         private static Dictionary<int, string> numerals = new Dictionary<int, string>()
         {
             {0, "first" },
@@ -150,7 +157,54 @@ namespace BattleshipOOP
             return coordinates;
         }
 
+        public static void PrintTwoBoards(Player player, Player anotherPlayer)
+        {
+            
+            string yourBoardMessage = "Your board:";
+            string opponendBoardMessage = "Your opponent's board:";
+            int columnOffset = 5;
+            string spacesOffset = new string (' ', columnOffset);
+            string yourBoardOffset = new string(' ', separatorLine.Length - yourBoardMessage.Length);
+            int rowNumber = 1;
+            string rowToPrint;
+            Player currentPlayer = player;
+            UI.PrintMessage(yourBoardMessage + yourBoardOffset + spacesOffset + opponendBoardMessage);
+            UI.PrintMessage(topLine + spacesOffset + topLine);
+            UI.PrintMessage(separatorLine + spacesOffset + separatorLine);
 
+            for(int e = 0; e < currentPlayer.Board.board.Count; e++)
+            {
+                rowToPrint = "";
+                for(int i = 0; i < 2; i++)
+                {
+                    if (rowNumber < 10)
+                    {
+                        rowToPrint += rowNumber.ToString() + longSeparator;
+                    }
+                    else
+                    {
+                        rowToPrint += rowNumber.ToString() + shortSeparator;
+                    }  
+                    foreach (Square square in currentPlayer.Board.board[e])
+                    {
+                        square.updateVisualRepresentation();
+                        if (!currentPlayer.IsActivePlayer && square.visualRepresentation == notHitShipMark)
+                        {
+                            rowToPrint += notHitEmptyMark;
+                        }
+                        else
+                        {
+                            rowToPrint += square.visualRepresentation;
+                        }
+                    }
+                    rowToPrint += (i == 0) ? spacesOffset : "";
+                    currentPlayer = (i == 0) ? anotherPlayer : player;
+                }
+                UI.PrintMessage(rowToPrint);
+                UI.PrintMessage(separatorLine + spacesOffset + separatorLine);
+                rowNumber++;
+            }  
+        }
 
         public static void StartGameCountDown(int positionX, int positionY)
         {

@@ -6,10 +6,6 @@ namespace BattleshipOOP
     {
 
         public List<List<Square>> board = new List<List<Square>>();
-        static string shortSeparator = " |";
-        static string longSeparator = "  |";
-        static string separatorLine = "--------------------------------------------";
-        static string topLine = "   | a | b | c | d | e | f | g | h | i | j |";
 
         public Space()
         {
@@ -27,26 +23,26 @@ namespace BattleshipOOP
         {
             int rowNumber = 1;
             string rowToPrint;
-            UI.PrintMessage(topLine);
-            UI.PrintMessage(separatorLine);
+            UI.PrintMessage(UI.topLine);
+            UI.PrintMessage(UI.separatorLine);
 
             foreach (List<Square> element in board)
             {
                 if (rowNumber < 10)
                 {
-                    rowToPrint = rowNumber.ToString() + longSeparator;
+                    rowToPrint = rowNumber.ToString() + UI.longSeparator;
                 }
                 else
                 {
-                    rowToPrint = rowNumber.ToString() + shortSeparator;
+                    rowToPrint = rowNumber.ToString() + UI.shortSeparator;
                 }
                 
                 foreach (Square square in element)
                 {
                     square.updateVisualRepresentation();
-                    if (!isActivePlayer && square.visualRepresentation == square.notHitShipMark)
+                    if (!isActivePlayer && square.visualRepresentation == UI.notHitShipMark)
                     {
-                        rowToPrint += square.notHitEmptyMark;
+                        rowToPrint += UI.notHitEmptyMark;
                     }
                     else
                     {
@@ -55,56 +51,7 @@ namespace BattleshipOOP
                     
                 }
                 UI.PrintMessage(rowToPrint);
-                UI.PrintMessage(separatorLine);
-                rowNumber++;
-            }  
-        }
-
-        public static void PrintTwoBoards(Player player, Player anotherPlayer)
-        {
-            
-            string yourBoardMessage = "Your board:";
-            string opponendBoardMessage = "Your opponent's board:";
-            int columnOffset = 5;
-            string spacesOffset = new string (' ', columnOffset);
-            string yourBoardOffset = new string(' ', separatorLine.Length - yourBoardMessage.Length);
-            int rowNumber = 1;
-            string rowToPrint;
-            Player currentPlayer = player;
-            UI.PrintMessage(yourBoardMessage + yourBoardOffset + spacesOffset + opponendBoardMessage);
-            UI.PrintMessage(topLine + spacesOffset + topLine);
-            UI.PrintMessage(separatorLine + spacesOffset + separatorLine);
-
-            for(int e = 0; e < currentPlayer.Board.board.Count; e++)
-            {
-                rowToPrint = "";
-                for(int i = 0; i < 2; i++)
-                {
-                    if (rowNumber < 10)
-                    {
-                        rowToPrint += rowNumber.ToString() + longSeparator;
-                    }
-                    else
-                    {
-                        rowToPrint += rowNumber.ToString() + shortSeparator;
-                    }  
-                    foreach (Square square in currentPlayer.Board.board[e])
-                    {
-                        square.updateVisualRepresentation();
-                        if (!currentPlayer.IsActivePlayer && square.visualRepresentation == square.notHitShipMark)
-                        {
-                            rowToPrint += square.notHitEmptyMark;
-                        }
-                        else
-                        {
-                            rowToPrint += square.visualRepresentation;
-                        }
-                    }
-                    rowToPrint += (i == 0) ? spacesOffset : "";
-                    currentPlayer = (i == 0) ? anotherPlayer : player;
-                }
-                UI.PrintMessage(rowToPrint);
-                UI.PrintMessage(separatorLine + spacesOffset + separatorLine);
+                UI.PrintMessage(UI.separatorLine);
                 rowNumber++;
             }  
         }

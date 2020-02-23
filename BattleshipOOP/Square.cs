@@ -9,8 +9,6 @@ namespace BattleshipOOP
         public bool IsHit { get; set; }
         public bool IsShip { get; set; }
         public bool IsTooClose { get; set; }
-        public string notHitShipMark = " # |";
-        public string notHitEmptyMark = "   |";
 
         public string visualRepresentation;
 
@@ -37,11 +35,11 @@ namespace BattleshipOOP
             }
             else if (!IsHit && IsShip)
             {
-                visualRepresentation = notHitShipMark;
+                visualRepresentation = UI.notHitShipMark;
             }
             else
             {
-                visualRepresentation = notHitEmptyMark;
+                visualRepresentation = UI.notHitEmptyMark;
             }
         }
     }
