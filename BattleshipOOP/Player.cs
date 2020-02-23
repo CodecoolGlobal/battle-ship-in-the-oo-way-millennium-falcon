@@ -48,8 +48,7 @@ namespace BattleshipOOP
                 foreach (int[] zoneCoordinates in ship.SafeZoneCoordinates) 
                 {
                     Board.board[zoneCoordinates[0]][zoneCoordinates[1]].IsHit = true;
-                    if (!IsActivePlayer)
-                        alreadySelected.Add(zoneCoordinates);
+                    alreadySelected.Add(zoneCoordinates);
                 }
             }
         }

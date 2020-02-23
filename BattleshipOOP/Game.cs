@@ -44,7 +44,7 @@ namespace BattleshipOOP
             {
                 UI.PrintTwoBoards(Player, AIOpponent);
                 UI.PrintComments();
-                foreach (var element in AIOpponent.alreadySelected)
+                foreach (var element in Player.alreadySelected)
                 {
                     Console.WriteLine($"{element[0]}, {element[1]}");
                 }
@@ -79,13 +79,13 @@ namespace BattleshipOOP
                 while (!correctCoordinates && isShip && !AIOpponent.IsLost && !Player.IsLost)
                 {
                     coordinates = Handler.GetRandomCoordinates();
-                    while (AIOpponent.alreadySelected.Any(x => x[0] == coordinates[0] && x[1] == coordinates[1]))
+                    while (Player.alreadySelected.Any(x => x[0] == coordinates[0] && x[1] == coordinates[1]))
                     {
                         coordinates = Handler.GetRandomCoordinates(); 
                     }
                     charRepresentation = Convert.ToChar(('A' + coordinates[1]));
                     UI.AddComment($"\nAI shoots at: {charRepresentation}{coordinates[0] + 1}\n");
-                    AIOpponent.alreadySelected.Add(coordinates);
+                    Player.alreadySelected.Add(coordinates);
                     correctCoordinates = Player.HandleShooting(coordinates);
                     if (correctCoordinates)
                     {
