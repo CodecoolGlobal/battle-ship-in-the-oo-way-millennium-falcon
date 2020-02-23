@@ -31,9 +31,23 @@ namespace BattleshipOOP
             if (Board.CheckIfShip(coordinates) && correctShot)
             {
                 PlayerShips.HitShip(coordinates);
+                UpdateZonesAfterDefeatingShip(coordinates);
             }
 
             return correctShot;
+        }
+
+        public void UpdateZonesAfterDefeatingShip(int[] coordinates)
+        {
+            Ship ship = PlayerShips.GetShipAtCoordinates(coordinates);
+            if (!ship.IsAlive)
+            {
+                
+                foreach (int[] zoneCoordinates in ship.SafeZoneCoordinates) 
+                {
+                    Board.board[zoneCoordinates[0]][zoneCoordinates[1]].IsHit = true;
+                }
+            }
         }
 
 

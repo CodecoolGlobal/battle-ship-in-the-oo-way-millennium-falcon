@@ -27,7 +27,8 @@ namespace BattleshipOOP
                         int[] safeCoordinate = new int[2];
                         safeCoordinate[0] = shipCoordinate[0] - 1 + i;
                         safeCoordinate[1] = shipCoordinate[1] - 1 + j;
-                        safeZoneCoordinates.Add(safeCoordinate);
+                        if (safeCoordinate[0] > 0 && safeCoordinate[0] < 10 && safeCoordinate[1] > 0 && safeCoordinate[1] < 10)
+                            safeZoneCoordinates.Add(safeCoordinate);
                     }
                 }
             }

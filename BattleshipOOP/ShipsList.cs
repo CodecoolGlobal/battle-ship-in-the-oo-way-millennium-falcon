@@ -54,7 +54,7 @@ namespace BattleshipOOP
                     Ship newShip = (ship.Key == "X-Wing" || ship.Key == "TIE Fighter") ? 
                         new Ship(ship.Key) : new Ship(ship.Key, UI.GetShipAlignment(ship.Key, i));
 
-                    newShip.FullCoordinates = UI.GetFullCoordinatesFromShipHead(newShip, board, i);
+                    newShip.FullCoordinates = Handler.GetFullCoordinatesFromShipHead(newShip, board, i);
                     newShip.SafeZoneCoordinates = Handler.GetSafeZoneCoordinates(newShip); 
                     Ships.Add(newShip);
 
