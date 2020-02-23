@@ -12,6 +12,7 @@ namespace BattleshipOOP
         public Space Board { get; set; }
         public bool IsActivePlayer { get; set; }
         public bool IsLost { get; set; }
+        public List<int[]> alreadySelected { get; set; }
         // private int[] last_hit { get; set; }
 
         public Player(string name, bool isRebellion, bool isActivePlayer)
@@ -22,6 +23,7 @@ namespace BattleshipOOP
             IsActivePlayer = isActivePlayer;
             Board = new Space();
             IsLost = false;
+            alreadySelected = new List<int[]>();
         }
 
         public bool HandleShooting(int[] coordinates)
@@ -46,6 +48,8 @@ namespace BattleshipOOP
                 foreach (int[] zoneCoordinates in ship.SafeZoneCoordinates) 
                 {
                     Board.board[zoneCoordinates[0]][zoneCoordinates[1]].IsHit = true;
+                    if (!IsActivePlayer)
+                        alreadySelected.Add(zoneCoordinates);
                 }
             }
         }
@@ -60,11 +64,6 @@ namespace BattleshipOOP
         public void AutomaticShipPopulation()
         {
             PlayerShips.AutomaticShipListPopulation(IsRebellion, Board);
-        }
-
-        public void PrintBoard()
-        {
-            Board.PrintBoard(IsActivePlayer);
         }
 
     // #TODO

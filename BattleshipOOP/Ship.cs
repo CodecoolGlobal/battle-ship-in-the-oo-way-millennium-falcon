@@ -29,10 +29,9 @@ namespace BattleshipOOP
 
         public void HitShip()
         {
-            UI.PrintMessage(Size.ToString());
             if (--Size == 0)
             {
-                UI.PrintMessage($"Ship {Type} has sunk");
+                UI.AddComment($"Ship {Type} has turned into space debris...\n");
                 IsAlive = false;
             }
         }

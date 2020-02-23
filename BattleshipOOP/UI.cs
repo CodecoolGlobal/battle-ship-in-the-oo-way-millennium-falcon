@@ -13,6 +13,7 @@ namespace BattleshipOOP
         public static string topLine = "   | a | b | c | d | e | f | g | h | i | j |";
         public static string notHitShipMark = " # |";
         public static string notHitEmptyMark = "   |";
+        private static string comment = "";
         private static Dictionary<int, string> numerals = new Dictionary<int, string>()
         {
             {0, "first" },
@@ -26,7 +27,14 @@ namespace BattleshipOOP
             Console.WriteLine(myMessage);
         }
 
-
+        public static void AddComment(string newComment)
+        {
+            comment += newComment;
+        }
+        public static void PrintComments(){
+            Console.WriteLine(comment);
+            comment = "";
+        }
 
         public static void AskForPlacement(Ship ship, int i)
         {
@@ -157,6 +165,43 @@ namespace BattleshipOOP
             return coordinates;
         }
 
+       public static void PrintBoard(bool isActivePlayer, List<List<Square>> board)
+        {
+            int rowNumber = 1;
+            string rowToPrint;
+            UI.PrintMessage(UI.topLine);
+            UI.PrintMessage(UI.separatorLine);
+
+            foreach (List<Square> element in board)
+            {
+                if (rowNumber < 10)
+                {
+                    rowToPrint = rowNumber.ToString() + UI.longSeparator;
+                }
+                else
+                {
+                    rowToPrint = rowNumber.ToString() + UI.shortSeparator;
+                }
+                
+                foreach (Square square in element)
+                {
+                    square.updateVisualRepresentation();
+                    if (!isActivePlayer && square.visualRepresentation == UI.notHitShipMark)
+                    {
+                        rowToPrint += UI.notHitEmptyMark;
+                    }
+                    else
+                    {
+                        rowToPrint += square.visualRepresentation;
+                    }
+                    
+                }
+                UI.PrintMessage(rowToPrint);
+                UI.PrintMessage(UI.separatorLine);
+                rowNumber++;
+            }  
+        }
+
         public static void PrintTwoBoards(Player player, Player anotherPlayer)
         {
             
@@ -168,6 +213,7 @@ namespace BattleshipOOP
             int rowNumber = 1;
             string rowToPrint;
             Player currentPlayer = player;
+            Console.Clear();
             UI.PrintMessage(yourBoardMessage + yourBoardOffset + spacesOffset + opponendBoardMessage);
             UI.PrintMessage(topLine + spacesOffset + topLine);
             UI.PrintMessage(separatorLine + spacesOffset + separatorLine);

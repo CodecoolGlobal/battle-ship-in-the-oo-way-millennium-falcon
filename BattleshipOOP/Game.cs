@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -41,26 +42,35 @@ namespace BattleshipOOP
         {
             while (!Player.IsLost && !AIOpponent.IsLost)
             {
-                Console.WriteLine("\nWhich field do you want to shoot?");
+                UI.PrintTwoBoards(Player, AIOpponent);
+                UI.PrintComments();
+                foreach (var element in AIOpponent.alreadySelected)
+                {
+                    Console.WriteLine($"{element[0]}, {element[1]}");
+                }
+
+                UI.PrintMessage("\nWhich field do you want to shoot?");
 
                 bool correctCoordinates = false;
                 bool isShip = true;
-                int[] cooridnates;
+                int[] coordinates;
+                char charRepresentation;
 
                 while (!correctCoordinates && isShip && !AIOpponent.IsLost)
                 {
-                    cooridnates = UI.GetPairCoordinates();
-                    correctCoordinates = AIOpponent.HandleShooting(cooridnates);
+                    coordinates = UI.GetPairCoordinates();
+                    correctCoordinates = AIOpponent.HandleShooting(coordinates);
                     if (correctCoordinates)
                     {
-                        isShip = AIOpponent.Board.CheckIfShip(cooridnates);
+                        isShip = AIOpponent.Board.CheckIfShip(coordinates);
                         correctCoordinates = false;
                         AIOpponent.CheckIfLost();
-
+                        if (isShip)
+                        {
+                            UI.PrintTwoBoards(Player, AIOpponent);
+                            UI.PrintComments();
+                        }
                     } 
-
-                    AIOpponent.PrintBoard();
-
                 }
 
                 isShip = true;
@@ -68,17 +78,21 @@ namespace BattleshipOOP
 
                 while (!correctCoordinates && isShip && !AIOpponent.IsLost && !Player.IsLost)
                 {
-                    cooridnates = Handler.GetAICoordinates();
-                    correctCoordinates = Player.HandleShooting(cooridnates);
+                    coordinates = Handler.GetRandomCoordinates();
+                    while (AIOpponent.alreadySelected.Any(x => x[0] == coordinates[0] && x[1] == coordinates[1]))
+                    {
+                        coordinates = Handler.GetRandomCoordinates(); 
+                    }
+                    charRepresentation = Convert.ToChar(('A' + coordinates[1]));
+                    UI.AddComment($"\nAI shoots at: {charRepresentation}{coordinates[0] + 1}\n");
+                    AIOpponent.alreadySelected.Add(coordinates);
+                    correctCoordinates = Player.HandleShooting(coordinates);
                     if (correctCoordinates)
                     {
-                        isShip = Player.Board.CheckIfShip(cooridnates);
+                        isShip = Player.Board.CheckIfShip(coordinates);
                         correctCoordinates = false;
                         Player.CheckIfLost();
                     }
-                    Player.PrintBoard();
-
-
 
                 }
             }

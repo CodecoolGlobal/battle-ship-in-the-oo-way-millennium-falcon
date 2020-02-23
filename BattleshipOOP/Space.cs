@@ -19,43 +19,6 @@ namespace BattleshipOOP
             }
         }
 
-        public void PrintBoard(bool isActivePlayer)
-        {
-            int rowNumber = 1;
-            string rowToPrint;
-            UI.PrintMessage(UI.topLine);
-            UI.PrintMessage(UI.separatorLine);
-
-            foreach (List<Square> element in board)
-            {
-                if (rowNumber < 10)
-                {
-                    rowToPrint = rowNumber.ToString() + UI.longSeparator;
-                }
-                else
-                {
-                    rowToPrint = rowNumber.ToString() + UI.shortSeparator;
-                }
-                
-                foreach (Square square in element)
-                {
-                    square.updateVisualRepresentation();
-                    if (!isActivePlayer && square.visualRepresentation == UI.notHitShipMark)
-                    {
-                        rowToPrint += UI.notHitEmptyMark;
-                    }
-                    else
-                    {
-                        rowToPrint += square.visualRepresentation;
-                    }
-                    
-                }
-                UI.PrintMessage(rowToPrint);
-                UI.PrintMessage(UI.separatorLine);
-                rowNumber++;
-            }  
-        }
-
         public bool CheckIfShip(int[] coordinates)
         {
             return board[coordinates[0]][coordinates[1]].IsShip;
@@ -74,11 +37,12 @@ namespace BattleshipOOP
             {
                 if (square.IsShip)
                 {
-                    UI.PrintMessage("A ship was hit!");
+                    UI.AddComment("A ship was hit! Extra shoot!\n");
+                    // UI.PrintMessage("A ship was hit! You can shoot again :)");
                 }
                 else
                 {
-                    UI.PrintMessage("Miss!");
+                    UI.AddComment("Miss!\n");
                 }
                 square.IsHit = true;
                 square.updateVisualRepresentation();

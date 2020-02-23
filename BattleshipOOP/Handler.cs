@@ -6,14 +6,6 @@ namespace BattleshipOOP
 {
     static class Handler
     {
-        public static int[] GetAICoordinates()
-        {
-
-            int[] AIcoordinates = GetRandomCoordinates();
-            char charRepresentation = Convert.ToChar(('A' + AIcoordinates[1]));
-            UI.PrintMessage($"AI shoots at: {charRepresentation}{AIcoordinates[0] + 1}");
-            return AIcoordinates;
-        }
 
         public static List<int[]> GetSafeZoneCoordinates(Ship newShip)
         {
@@ -27,7 +19,7 @@ namespace BattleshipOOP
                         int[] safeCoordinate = new int[2];
                         safeCoordinate[0] = shipCoordinate[0] - 1 + i;
                         safeCoordinate[1] = shipCoordinate[1] - 1 + j;
-                        if (safeCoordinate[0] > 0 && safeCoordinate[0] < 10 && safeCoordinate[1] > 0 && safeCoordinate[1] < 10)
+                        if (safeCoordinate[0] >= 0 && safeCoordinate[0] < 10 && safeCoordinate[1] >= 0 && safeCoordinate[1] < 10)
                             safeZoneCoordinates.Add(safeCoordinate);
                     }
                 }
